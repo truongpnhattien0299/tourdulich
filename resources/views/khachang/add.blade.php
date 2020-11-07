@@ -6,8 +6,18 @@
             <h4 class="card-title">Create new customner</h4>
             <p class="card-description"> <a href="customer/list">&lArr; Back List</a> </p>
             @if (session('error'))
-                <div class="alert alert-danger">{{ session('error') }}</div>
+                <div id="idError">
+                    <div class="alert alert-danger">{{ session('error') }}</div>
+                </div>
+                <script>
+                    window.addEventListener("click", HideEror);
+                    function HideEror()
+                    {
+                        document.getElementById("idError").innerHTML="";
+                    }
+                </script>
             @endif
+            
             <form class="forms-sample" action="add" method="POST">
                 @csrf
                 <div class="form-group">
