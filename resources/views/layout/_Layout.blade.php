@@ -272,6 +272,7 @@
       <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
+    @yield('script')
     <!-- plugins:js -->
     <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

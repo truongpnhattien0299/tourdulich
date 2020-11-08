@@ -36,10 +36,18 @@
                 <td> {{$item->kh_ten}} </td>
                 <td> {{$item->kh_sdt}} </td>
                 <td> {{$item->kh_ngaysinh}} </td>
-                <td> {{$item->kh_email}} </td>
+                <td>
+                  <address class="text-primary">{{$item->kh_email}}</address> 
+                </td>
                 <td> {{$item->kh_cmnd}} </td>
                 <td>  
-                  Edit/Delete
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" style="padding: 10%">Select</button>
+                    <div class="dropdown-menu" style="min-width: 10px">
+                      <a href="edit&id={{$item->kh_id}}" class="dropdown-item">Edit</a>
+                      <a onclick="del()" id="del" class="dropdown-item">Delete</a>
+                    </div>
+                  </div>
                 </td>
               </tr>
 
@@ -52,4 +60,15 @@
     </div>
 </div>
 
+@endsection
+
+@section('script')
+<script>
+  function del()
+  {
+    var a = confirm("Are you sure you want to DELETE this customer");
+    if(a)
+      location.replace("delete&id={{$item->kh_id}}");
+  }
+</script>
 @endsection

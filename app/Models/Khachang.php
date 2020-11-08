@@ -9,5 +9,6 @@ class Khachang extends Model
 {
     use HasFactory;
     protected $table = "tour_khachang";
+    protected $primaryKey="kh_id";
     public $timestamps = false;
 }
