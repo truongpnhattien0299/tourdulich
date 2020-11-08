@@ -10,11 +10,11 @@
                     <div class="alert alert-danger">{{ session('error') }}</div>
                 </div>
                 <script>
-                    window.addEventListener("click", HideEror);
-                    function HideEror()
-                    {
-                        document.getElementById("idError").innerHTML="";
-                    }
+                    $(document).ready(function(){
+                        $(window).click(function(){
+                            $("#idError").slideUp("slow");
+                        });
+                    });
                 </script>
             @endif
             

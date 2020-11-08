@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="../../assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="../../assets/images/favicon.ico" />
+    <script src="../../assets/js/jquery-3.5.1.min.js"></script>
   </head>
   <body>
     <div class="container-scroller">
@@ -280,6 +281,7 @@
     <script src="../../assets/js/off-canvas.js"></script>
     <script src="../../assets/js/hoverable-collapse.js"></script>
     <script src="../../assets/js/misc.js"></script>
+    
     <!-- endinject -->
     <!-- Custom js for this page -->
     <!-- End custom js for this page -->
