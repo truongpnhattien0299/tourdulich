@@ -24,9 +24,9 @@ Route::group(['prefix' => 'category'], function () {
 
 Route::group(['prefix' => 'tour'], function () {
     Route::get('listtour', 'TourController@getTour');
-    Route::get('addcate', 'LoaitourController@getAddLoai');
-    Route::post('addcate', 'LoaitourController@postAddLoai');
-    Route::get('editcate&id={id}', 'LoaitourController@getEditLoai');
-    Route::post('editcate&id={id}', 'LoaitourController@postEditLoai');
+    Route::get('addtour', 'TourController@getAddTour');
+    Route::post('addtour', 'TourController@postAddTour');
+    Route::get('edit&id={id}', 'TourController@getEditTour');
+    Route::post('edit&id={id}', 'TourController@postEditTour');
     Route::get('delete&id={id}', 'LoaitourController@deleteLoai');
 });

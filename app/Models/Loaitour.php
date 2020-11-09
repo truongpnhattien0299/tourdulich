@@ -14,6 +14,6 @@ class Loaitour extends Model
 
     public function tours()
     {
-        return $this->hasMany('App\Tour', 'loai_id', 'tour_id');
+        return $this->hasMany('App\Tour', 'loai_id', 'loai_id');
     }
 }

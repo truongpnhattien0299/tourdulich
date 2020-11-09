@@ -99,7 +99,7 @@
               <div class="collapse" id="tour">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="/tour/listtour"> List </a></li>
-                  <li class="nav-item"> <a class="nav-link" href="/tour/add"> Add </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/tour/addtour"> Add </a></li>
                 </ul>
               </div>
             </li>
