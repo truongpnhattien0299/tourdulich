@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Loaitour;
-use Illuminate\Database\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 class LoaitourController extends Controller
 {

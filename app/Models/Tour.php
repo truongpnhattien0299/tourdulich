@@ -14,7 +14,7 @@ class Tour extends Model
 
     public function loaitour()
     {
-        return $this->belongsTo('App\Models\Loaitour', 'tour_id', 'loai_id');
+        return $this->belongsTo('App\Models\Loaitour', 'loai_id', 'loai_id');
     }
 
     public function doantour()
