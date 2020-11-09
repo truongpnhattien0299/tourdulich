@@ -31,7 +31,39 @@ class LoaitourController extends Controller
             $loai->loai_mota = $request->txtDescript;
             $loai->save();
         }catch(QueryException $e){
-            return back()->withError('Can\'t create new customer. Because form incomplete')->withInput();
+            return back()->withError('Can\'t create new category. Because form incomplete')->withInput();
+        }
+        return redirect('category/listcate');
+    }
+
+    public function getEditLoai($id)
+    {
+        $loai = Loaitour::find($id);
+        return view('loaitour.edit', ['loai'=>$loai]);
+    }
+
+    public function postEditLoai(Request $request, $id)
+    {
+        try{
+            $loai = Loaitour::findOrFail($id);
+            $loai->loai_ten = $request->namecate;
+            $loai->loai_mota = $request->txtDescript;
+            $loai->save();
+        }catch(ModelNotFoundException $e){
+            return back()->withError('Can\'t create new category. Because can\'t find id category')->withInput();
+        }catch(QueryException $e){
+            return back()->withError('Can\'t create new category. Because form incomplete')->withInput();
+        }
+        return redirect('category/listcate');
+    }
+
+    public function deleteLoai($id)
+    {
+        try{
+            $loai = Loaitour::findOrFail($id);
+            $loai->delete();
+        }catch(ModelNotFoundException $e){
+            return back()->withError('Can\'t create new category. Because can\'t find id category')->withInput();
         }
         return redirect('category/listcate');
     }

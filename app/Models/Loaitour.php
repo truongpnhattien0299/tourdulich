@@ -11,4 +11,9 @@ class Loaitour extends Model
     protected $table = "tour_loai";
     protected $primaryKey="loai_id";
     public $timestamps = false;
+
+    public function tours()
+    {
+        return $this->hasMany('App\Tour', 'loai_id', 'tour_id');
+    }
 }

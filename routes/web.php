@@ -10,11 +10,23 @@ Route::group(['prefix' => 'customer'], function () {
     Route::post('addcus', 'KhachangController@postAddKH');
     Route::get('editcus&id={id}', 'KhachangController@getEditKH');
     Route::post('editcus&id={id}', 'KhachangController@postEditKH');
-    Route::get('deletecus&id={id}', 'KhachangController@deleteKH');
+    Route::get('delete&id={id}', 'KhachangController@deleteKH');
 });
 
 Route::group(['prefix' => 'category'], function () {
     Route::get('listcate', 'LoaitourController@getLoai');
     Route::get('addcate', 'LoaitourController@getAddLoai');
     Route::post('addcate', 'LoaitourController@postAddLoai');
+    Route::get('editcate&id={id}', 'LoaitourController@getEditLoai');
+    Route::post('editcate&id={id}', 'LoaitourController@postEditLoai');
+    Route::get('delete&id={id}', 'LoaitourController@deleteLoai');
+});
+
+Route::group(['prefix' => 'tour'], function () {
+    Route::get('listtour', 'TourController@getTour');
+    Route::get('addcate', 'LoaitourController@getAddLoai');
+    Route::post('addcate', 'LoaitourController@postAddLoai');
+    Route::get('editcate&id={id}', 'LoaitourController@getEditLoai');
+    Route::post('editcate&id={id}', 'LoaitourController@postEditLoai');
+    Route::get('delete&id={id}', 'LoaitourController@deleteLoai');
 });

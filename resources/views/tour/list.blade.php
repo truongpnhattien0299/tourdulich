@@ -24,15 +24,17 @@
                 <tr>
                   <th> id </th>
                   <th> Name </th>
+                  <th> Category </th>
                   <th> Description </th>
                 </tr>
               </thead>
               <tbody>
-                  @foreach ($loai as $item)
+                  @foreach ($tour as $item)
                   <tr>
-                      <td> {{$item->loai_id}} </td>
-                      <td> {{$item->loai_ten}} </td>
-                      <td> {{$item->loai_mota}} </td>
+                      <td> {{$item->tour_id}} </td>
+                      <td> {{$item->tour_ten}} </td>
+                      <td> {{$item->loaitour->loai_ten}} </td>
+                      <td> {{$item->tour_mota}} </td>
                       <td>  
                       <div class="btn-group">
                           <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" style="padding: 10%">Select</button>
