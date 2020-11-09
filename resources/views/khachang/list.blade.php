@@ -17,42 +17,45 @@
           <h4 class="card-title">List</h4>
           <p class="card-description"> <a href="/customer/addcus"> Create new </a> </p>
           <table class="table table-striped">
-            <thead>
-              <tr>
-                <th> id </th>
-                <th> Name </th>
-                <th> Phone </th>
-                <th> Day of Birth </th>
-                <th> Email </th>
-                <th> IDentity </th>
-                <th> Func </th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach ($khachang as $item)
-               
-              <tr>
-                <td> {{$item->kh_id}} </td>
-                <td> {{$item->kh_ten}} </td>
-                <td> {{$item->kh_sdt}} </td>
-                <td> {{$item->kh_ngaysinh}} </td>
-                <td>
-                  <address class="text-primary">{{$item->kh_email}}</address> 
-                </td>
-                <td> {{$item->kh_cmnd}} </td>
-                <td>  
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" style="padding: 10%">Select</button>
-                    <div class="dropdown-menu" style="min-width: 10px">
-                      <a href="editcus&id={{$item->kh_id}}" class="dropdown-item">Edit</a>
-                      <a onclick="del()" id="del" class="dropdown-item">Delete</a>
+            @if (session('notice'))
+                <div class="alert alert-danger">{{ session('notice') }}</div>
+            @else
+              <thead>
+                <tr>
+                  <th> id </th>
+                  <th> Name </th>
+                  <th> Phone </th>
+                  <th> Day of Birth </th>
+                  <th> Email </th>
+                  <th> IDentity </th>
+                  <th> Func </th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($khachang as $item)
+                
+                <tr>
+                  <td> {{$item->kh_id}} </td>
+                  <td> {{$item->kh_ten}} </td>
+                  <td> {{$item->kh_sdt}} </td>
+                  <td> {{$item->kh_ngaysinh}} </td>
+                  <td>
+                    <address class="text-primary">{{$item->kh_email}}</address> 
+                  </td>
+                  <td> {{$item->kh_cmnd}} </td>
+                  <td>  
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" style="padding: 10%">Select</button>
+                      <div class="dropdown-menu" style="min-width: 10px">
+                        <a href="editcus&id={{$item->kh_id}}" class="dropdown-item">Edit</a>
+                        <a onclick="del()" id="del" class="dropdown-item">Delete</a>
+                      </div>
                     </div>
-                  </div>
-                </td>
-              </tr>
+                  </td>
+                </tr>
 
-              @endforeach
-
+                @endforeach
+              @endif
             </tbody>
           </table>
         </div>
@@ -61,14 +64,15 @@
 </div>
 
 @endsection
-
-@section('script')
-<script>
-  function del()
-  {
-    var a = confirm("Are you sure you want to DELETE this customer");
-    if(a)
-      location.replace("delete&id={{$item->kh_id}}");
-  }
-</script>
-@endsection
+@if (!session('notice'))
+  @section('script')
+  <script>
+    function del()
+    {
+      var a = confirm("Are you sure you want to DELETE this customer");
+      if(a)
+        location.replace("delete&id={{$item->kh_id}}");
+    }
+  </script>
+  @endsection
+@endif

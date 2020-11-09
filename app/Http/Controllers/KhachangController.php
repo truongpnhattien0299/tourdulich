@@ -10,6 +10,11 @@ class KhachangController extends Controller
     public function getKH()
     {
         $khachang = Khachang::all();
+        if($khachang->first()==null)
+        {
+            session()->put('notice','Haven\'t any row');
+            return view('loaitour.list');
+        }
         return view('khachang.list', ['khachang'=>$khachang]);
     }
     
