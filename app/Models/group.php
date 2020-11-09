@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class employee extends Model
+class group extends Model
 {
     use HasFactory;
-    protected $table = "tour_nhanvien";
-    protected $primaryKey="nv_id";
+    protected $table = "tour_doan";
+    protected $primaryKey="doan_id";
     public $timestamps = false;
 
     public function tours()
     {
-        return $this->hasMany('App\Tour', 'loai_id', 'tour_id');
+        return $this->hasMany('App\Tour', 'tour_id', 'tour_id');
     }
 }

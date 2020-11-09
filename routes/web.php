@@ -13,6 +13,24 @@ Route::group(['prefix' => 'customer'], function () {
     Route::get('delete&id={id}', 'KhachangController@deleteKH');
 });
 
+Route::group(['prefix' => 'Employee'], function () {
+    Route::get('listemp', 'EmployeeController@getEmployee');
+    Route::get('addemp', 'EmployeeController@getAddEmployee');
+    Route::post('addemp', 'EmployeeController@postAddEmployee');
+    Route::get('editemp&id={id}', 'EmployeeController@getEditEmployee');
+    Route::post('editemp&id={id}', 'EmployeeController@postEditEmployee');
+    Route::get('delete&id={id}', 'EmployeeController@deleteEmployee');
+});
+
+Route::group(['prefix' => 'Group'], function () {
+    Route::get('listgrp', 'GroupController@getGroup');
+    Route::get('addgrp', 'GroupController@getAddGroup');
+    Route::post('addgrp', 'GroupController@postAddGroup');
+    Route::get('editgrp&id={id}', 'GroupController@getEditGroup');
+    Route::post('editgrp&id={id}', 'GroupController@postGroup');
+    Route::get('delete&id={id}', 'GroupController@deleteGroup');
+});
+
 Route::group(['prefix' => 'category'], function () {
     Route::get('listcate', 'LoaitourController@getLoai');
     Route::get('addcate', 'LoaitourController@getAddLoai');
