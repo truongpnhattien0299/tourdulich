@@ -117,6 +117,19 @@
                 </div>
               </li>
             <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#Location" aria-expanded="false" aria-controls="Location">
+                  <span class="menu-title">Location</span>
+                  <i class="menu-arrow"></i>
+                  <i class="mdi mdi-medical-bag menu-icon"></i>
+                </a>
+                <div class="collapse" id="Location">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="/Location/listlct"> List </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/Location/addlct"> Add </a></li>
+                  </ul>
+                </div>
+              </li>
+            <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#Employee" aria-expanded="false" aria-controls="Employee">
                   <span class="menu-title">Employee</span>
                   <i class="menu-arrow"></i>
