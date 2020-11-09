@@ -90,6 +90,19 @@
                 </ul>
               </div>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#tour" aria-expanded="false" aria-controls="tour">
+                <span class="menu-title">Tour</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-medical-bag menu-icon"></i>
+              </a>
+              <div class="collapse" id="tour">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="/tour/listtour"> List </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/tour/add"> Add </a></li>
+                </ul>
+              </div>
+            </li>
           </ul>
         </nav>
         <!-- partial -->
