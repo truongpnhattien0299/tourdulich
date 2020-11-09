@@ -1,6 +1,6 @@
-@extends('layout._Layout')
+ @extends('layout._Layout')
 @section('content')
-    
+
 <div class="page-header">
     <h3 class="page-title"> Customer </h3>
     <nav aria-label="breadcrumb">
@@ -33,17 +33,17 @@
               </thead>
               <tbody>
                 @foreach ($khachang as $item)
-                
+
                 <tr>
                   <td> {{$item->kh_id}} </td>
                   <td> {{$item->kh_ten}} </td>
                   <td> {{$item->kh_sdt}} </td>
                   <td> {{$item->kh_ngaysinh}} </td>
                   <td>
-                    <address class="text-primary">{{$item->kh_email}}</address> 
+                    <address class="text-primary">{{$item->kh_email}}</address>
                   </td>
                   <td> {{$item->kh_cmnd}} </td>
-                  <td>  
+                  <td>
                     <div class="btn-group">
                       <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" style="padding: 10%">Select</button>
                       <div class="dropdown-menu" style="min-width: 10px">
