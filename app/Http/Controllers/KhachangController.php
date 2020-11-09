@@ -31,7 +31,7 @@ class KhachangController extends Controller
         }catch(QueryException $e){
             return back()->withError('Can\'t create new customer. Because form incomplete')->withInput();
         }
-        return redirect('customer/list');
+        return redirect('customer/listcus');
     }
 
     public function getEditKH($id)
@@ -53,13 +53,13 @@ class KhachangController extends Controller
         }catch(QueryException $e){
             return back()->withError('Can\'t create new customer. Because form incomplete');
         }
-        return redirect('customer/list');
+        return redirect('customer/listcus');
     }
 
     public function deleteKH($id)
     {
         $khachang = Khachang::find($id);
         $khachang->delete();
-        return redirect('customer/list');
+        return redirect('customer/listcus');
     }
 }

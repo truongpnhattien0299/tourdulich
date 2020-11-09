@@ -68,7 +68,7 @@
   {
     var a = confirm("Are you sure you want to DELETE this customer");
     if(a)
-      location.replace("deletecus&id={{$item->kh_id}}");
+      location.replace("delete&id={{$item->kh_id}}");
   }
 </script>
 @endsection

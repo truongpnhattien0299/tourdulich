@@ -18,7 +18,7 @@
                 </script>
             @endif
             
-            <form class="forms-sample" action="edit&id={{ $khachang->kh_id }}" method="POST">
+            <form class="forms-sample" action="editcus&id={{ $khachang->kh_id }}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="name">Name</label>

@@ -59,9 +59,9 @@
   <script>
     function del()
     {
-      var a = confirm("Are you sure you want to DELETE this customer");
+      var a = confirm("Are you sure you want to DELETE this category");
       if(a)
-        location.replace("deleteCATE&id={{$item->kh_id}}");
+        location.replace("delete&id={{$item->loai_id}}");
     }
   </script>
   @endsection
