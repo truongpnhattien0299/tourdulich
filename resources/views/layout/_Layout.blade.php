@@ -103,6 +103,33 @@
                 </ul>
               </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#Group" aria-expanded="false" aria-controls="Group">
+                  <span class="menu-title">Group</span>
+                  <i class="menu-arrow"></i>
+                  <i class="mdi mdi-medical-bag menu-icon"></i>
+                </a>
+                <div class="collapse" id="Group">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="/Group/listgrp"> List </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/Group/addgrp"> Add </a></li>
+                  </ul>
+                </div>
+              </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#Employee" aria-expanded="false" aria-controls="Employee">
+                  <span class="menu-title">Employee</span>
+                  <i class="menu-arrow"></i>
+                  <i class="mdi mdi-medical-bag menu-icon"></i>
+                </a>
+                <div class="collapse" id="Employee">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="/Employee/listemp"> List </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/Employee/addemp"> Add </a></li>
+                  </ul>
+                </div>
+              </li>
+
           </ul>
         </nav>
         <!-- partial -->
@@ -135,7 +162,7 @@
     <script src="../../assets/js/off-canvas.js"></script>
     <script src="../../assets/js/hoverable-collapse.js"></script>
     <script src="../../assets/js/misc.js"></script>
-    
+
     <!-- endinject -->
     <!-- Custom js for this page -->
     <!-- End custom js for this page -->

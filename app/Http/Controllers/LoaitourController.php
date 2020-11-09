@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
-use Illuminate\Database\ModelNotFoundException;
-
-use App\Models\Loaitour;
 class LoaitourController extends Controller
 {
     public function getLoai()
