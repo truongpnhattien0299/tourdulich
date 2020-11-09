@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Loaitour;
 use Illuminate\Database\ModelNotFoundException;
 use Illuminate\Database\QueryException;
+use Illuminate\Database\ModelNotFoundException;
 class LoaitourController extends Controller
 {
     public function getLoai()
