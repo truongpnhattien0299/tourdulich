@@ -15,7 +15,7 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">List</h4>
-          <p class="card-description"> <a href="/customer/add"> Create new </a> </p>
+          <p class="card-description"> <a href="/customer/addcus"> Create new </a> </p>
           <table class="table table-striped">
             <thead>
               <tr>
@@ -44,7 +44,7 @@
                   <div class="btn-group">
                     <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" style="padding: 10%">Select</button>
                     <div class="dropdown-menu" style="min-width: 10px">
-                      <a href="edit&id={{$item->kh_id}}" class="dropdown-item">Edit</a>
+                      <a href="editcus&id={{$item->kh_id}}" class="dropdown-item">Edit</a>
                       <a onclick="del()" id="del" class="dropdown-item">Delete</a>
                     </div>
                   </div>
@@ -68,7 +68,7 @@
   {
     var a = confirm("Are you sure you want to DELETE this customer");
     if(a)
-      location.replace("delete&id={{$item->kh_id}}");
+      location.replace("deletecus&id={{$item->kh_id}}");
   }
 </script>
 @endsection

@@ -5,18 +5,16 @@ use Illuminate\Support\Facades\Route;
 // use App\Models\Khachang;
 
 Route::group(['prefix' => 'customer'], function () {
-    Route::get('list', 'KhachangController@getKH');
-    Route::get('add', 'KhachangController@getAddKH');
-    Route::post('add', 'KhachangController@postAddKH');
-    Route::get('edit&id={id}', 'KhachangController@getEditKH');
-    Route::post('edit&id={id}', 'KhachangController@postEditKH');
-    Route::get('delete&id={id}', 'KhachangController@deleteKH');
+    Route::get('listcus', 'KhachangController@getKH');
+    Route::get('addcus', 'KhachangController@getAddKH');
+    Route::post('addcus', 'KhachangController@postAddKH');
+    Route::get('editcus&id={id}', 'KhachangController@getEditKH');
+    Route::post('editcus&id={id}', 'KhachangController@postEditKH');
+    Route::get('deletecus&id={id}', 'KhachangController@deleteKH');
 });
 
-// Route::get('test', function () {
-//     $kh = Khachang::all();
-//     foreach($kh as $item)
-//     {
-//         echo $item->kh_ten;
-//     }
-// });
+Route::group(['prefix' => 'category'], function () {
+    Route::get('listcate', 'LoaitourController@getLoai');
+    Route::get('addcate', 'LoaitourController@getAddLoai');
+    Route::post('addcate', 'LoaitourController@postAddLoai');
+});

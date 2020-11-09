@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Create new customner</h4>
-            <p class="card-description"> <a href="list">&lArr; Back List</a> </p>
+            <p class="card-description"> <a href="listcus">&lArr; Back List</a> </p>
             @if (session('error'))
                 <div id="idError">
                     <div class="alert alert-danger">{{ session('error') }}</div>
@@ -18,7 +18,7 @@
                 </script>
             @endif
             
-            <form class="forms-sample" action="add" method="POST">
+            <form class="forms-sample" action="addcus" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="name">Name</label>
