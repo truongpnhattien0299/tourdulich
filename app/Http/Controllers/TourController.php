@@ -67,7 +67,7 @@ class TourController extends Controller
         $location = location::where('tp_id', $id)->get();
         foreach($location as $item)
         {
-            echo "<option value='". $item->id ."'>". $item->dd_ten ."</option>";
+            echo "<option id='city_".$item->id."' value='". $item->id ."'>". $item->dd_ten ."</option>";
         }
     }
 }

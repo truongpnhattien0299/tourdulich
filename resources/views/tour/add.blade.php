@@ -17,7 +17,7 @@
                     });
                 </script>
             @endif
-            
+
             <form class="forms-sample" action="addtour" method="POST">
                 @csrf
                 <div class="form-group">
@@ -50,7 +50,7 @@
                         <div class="form-group row">
                             <div class="col-sm-12">
                                 <select class="form-control" multiple size="7" id="left">
-                                    
+
                                 </select>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                             <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" id="btn-right">
                                 <i class="mdi mdi-arrow-right"></i>
                             </button>
-                            
+
                         </div>
                         <div class="template-demo d-flex justify-content-between flex-nowrap">
                             <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" id="btn-left">
@@ -81,7 +81,7 @@
                             <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon">
                                 <i class="mdi mdi-arrow-up"></i>
                             </button>
-                            
+
                         </div>
                         <div class="template-demo d-flex justify-content-between flex-nowrap">
                             <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon">
@@ -107,9 +107,21 @@
                     $("#left").html(data);
                 });
             });
+            var a=[{
+                    id:""
+            }];
+            var item;
+            var city_id;
             $("#btn-right").click(function(){
                 var s = $("#left").val();
-                alert(s);
+                for(var i=0;i < a.length;i++){
+                    if(a[i]["id"]!=s){
+
+                    }
+                }
+                alert(a["id"]);
+                city_id+="<option>"+$('#city_'+s).html()+"</option>";
+                $("#right").html(city_id);
             });
         });
     </script>
