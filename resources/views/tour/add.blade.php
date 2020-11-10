@@ -107,21 +107,37 @@
                     $("#left").html(data);
                 });
             });
-            var a=[{
-                    id:""
-            }];
-            var item;
-            var city_id;
+            var opt = [{id:null, val:null}];
+            var s;
             $("#btn-right").click(function(){
-                var s = $("#left").val();
-                for(var i=0;i < a.length;i++){
-                    if(a[i]["id"]!=s){
-
-                    }
+                if(opt[0]['id']==null)
+                {
+                    var id = $("#left").val();
+                    var city_id = "<option>"+$('#city_'+id).html()+"</option>";
+                    opt = [{id:id, val:city_id}];
+                    s += opt[0]['val']
+                    alert("start");
+                    $("#right").html(s);
                 }
-                alert(a["id"]);
-                city_id+="<option>"+$('#city_'+s).html()+"</option>";
-                $("#right").html(city_id);
+                else
+                {
+                    var id = $("#left").val();
+                    for(var i=0; i<opt.length; i++);
+                    {
+                        var tmp = opt[i]['id'];
+                        if(tmp==id)
+                        {
+                            alert(tmp);
+                            // break;
+                        }
+                    }
+                    // var city_id = "<option>"+$('#city_'+id).html()+"</option>";
+                    // opt = [{id:id, val:city_id}];
+                    // s += opt[0]['val']
+                    alert("else");
+                    // $("#right").html(s);
+                }
+                // alert(opt[0]['val']);
             });
         });
     </script>
