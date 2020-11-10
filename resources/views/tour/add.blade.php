@@ -107,37 +107,42 @@
                     $("#left").html(data);
                 });
             });
-            var opt = [{id:null, val:null}];
-            var s;
+            var arr = [], opt = {};
+            var s="";
             $("#btn-right").click(function(){
-                if(opt[0]['id']==null)
+                if(arr.length==0)
                 {
                     var id = $("#left").val();
                     var city_id = "<option>"+$('#city_'+id).html()+"</option>";
-                    opt = [{id:id, val:city_id}];
-                    s += opt[0]['val']
-                    alert("start");
+                    opt = {id: id, val: city_id};
+                    arr.push(opt);
+                    s = arr[0]['val']
                     $("#right").html(s);
                 }
                 else
                 {
                     var id = $("#left").val();
-                    for(var i=0; i<opt.length; i++);
+                    var flag = 0;
+                    var i;
+                    for(i=0; i<arr.length; i++)
                     {
-                        var tmp = opt[i]['id'];
-                        if(tmp==id)
+                        var tmp = arr[i]['id'] * 1;
+                        if(id==tmp)
                         {
-                            alert(tmp);
-                            // break;
+                            alert("This location have choosed");
+                            flag = 1;
+                            break;
                         }
                     }
-                    // var city_id = "<option>"+$('#city_'+id).html()+"</option>";
-                    // opt = [{id:id, val:city_id}];
-                    // s += opt[0]['val']
-                    alert("else");
-                    // $("#right").html(s);
+                    if(flag==0)
+                    {
+                        var city_id = "<option>"+$('#city_'+id).html()+"</option>";
+                        opt = {id: id, val: city_id};
+                        arr.push(opt);
+                        s += arr[i]['val'];
+                        $("#right").html(s);
+                    }
                 }
-                // alert(opt[0]['val']);
             });
         });
     </script>
