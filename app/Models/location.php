@@ -14,6 +14,6 @@ class location extends Model
 
     public function city()
     {
-        return $this->belongsTo('App\listcity', 'id_tp', 'dd_id');
+        return $this->belongsTo('App\Models\listcity', 'tp_id', 'tp_id');
     }
 }
