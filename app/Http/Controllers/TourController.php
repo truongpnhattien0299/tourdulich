@@ -7,6 +7,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Database\ModelNotFoundException;
 
 use App\Models\Tour;
+use App\Models\listcity;
 use App\Models\Loaitour;
 
 class TourController extends Controller
@@ -24,13 +25,14 @@ class TourController extends Controller
 
     public function getAddTour()
     {
+        $city = listcity::all();
         $loai = Loaitour::all();
         if($loai->first()==null)
         {
             session()->put('notice','Don\'t have any Category of tour');
             return view('tour.add');
         }
-        return view('tour.add', ['loai'=>$loai]);
+        return view('tour.add', ['loai'=>$loai, 'city'=>$city]);
     }
 
     public function postAddTour(Request $request)
@@ -57,5 +59,10 @@ class TourController extends Controller
             return view('tour.edit');
         }
         return view('tour.edit', ['tour'=>$tour, 'loai'=>$loai]);
+    }
+
+    public function ajaxTour(Request $request)
+    {
+        # code...
     }
 }
