@@ -33,12 +33,12 @@
                 <tr>
                   <td> {{$item->id}} </td>
                   <td> {{$item->dd_ten}} </td>
-                  <td> {{$item->id_tp}} </td>
+                  <td> {{$item->city->tp_name}} </td>
                   <td>
                     <div class="btn-group">
                       <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" style="padding: 10%">Select</button>
                       <div class="dropdown-menu" style="min-width: 10px">
-                        <a href="editemp&id={{$item->id}}" class="dropdown-item">Edit</a>
+                        <a href="editlct&id={{$item->id}}" class="dropdown-item">Edit</a>
                         <a onclick="del()" id="del" class="dropdown-item">Delete</a>
                       </div>
                     </div>

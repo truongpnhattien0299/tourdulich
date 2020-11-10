@@ -22,51 +22,47 @@ class locationController extends Controller
 
     public function getAddlocation()
     {
-        return view('location.add');
+        $listcity = listcity::all();
+        return view('location.add',['listcity'=>$listcity]);
     }
 
     public function postAddlocation(Request $request)
     {
         try{
             $location = new location;
-            $location->nv_ten = $request->name;
-            $location->nv_sdt = $request->phone;
-            $location->nv_ngaysinh = $request->dayOfBirth;
-            $location->nv_email = $request->email;
-            $location->nv_nhiemvu = $request->mission;
+            $location->tp_id = $request->city;
+            $location->dd_ten = $request->name;
             $location->save();
         }catch(QueryException $e){
             return back()->withError('Can\'t create new location. Because form incomplete')->withInput();
         }
-        return redirect('location/listemp');
+        return redirect('Location/listlct');
     }
 
     public function getEditlocation($id)
     {
         $location = location::find($id);
-        return view('location.edit',['location' => $location]);
+        $listcity = listcity::all();
+        return view('location.edit',['location' => $location,'listcity'=>$listcity]);
     }
 
     public function postEditlocation(Request $request, $id)
     {
         try{
             $location = location::find($id);
-            $location->nv_ten = $request->name;
-            $location->nv_sdt = $request->phone;
-            $location->nv_ngaysinh = $request->dayOfBirth;
-            $location->nv_email = $request->email;
-            $location->nv_nhiemvu = $request->mission;
+            $location->dd_ten = $request->name;
+            $location->tp_id = $request->city;
             $location->save();
         }catch(QueryException $e){
             return back()->withError('Can\'t create new location. Because form incomplete');
         }
-        return redirect('location/listemp');
+        return redirect('Location/listlct');
     }
 
     public function deletelocation($id)
     {
         $location = location::find($id);
         $location->delete();
-        return redirect('location/listemp');
+        return redirect('Location/listlct');
     }
 }

@@ -37,7 +37,7 @@ Route::group(['prefix' => 'Location'], function () {
     Route::get('addlct', 'locationController@getAddlocation');
     Route::post('addlct', 'locationController@postAddlocation');
     Route::get('editlct&id={id}', 'locationController@getEditlocation');
-    Route::post('editlctid={id}', 'locationController@postEditlocation');
+    Route::post('editlct&id={id}', 'locationController@postEditlocation');
     Route::get('delete&id={id}', 'locationController@deletelocation');
 });
 
