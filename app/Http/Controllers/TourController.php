@@ -9,6 +9,7 @@ use Illuminate\Database\ModelNotFoundException;
 use App\Models\Tour;
 use App\Models\listcity;
 use App\Models\Loaitour;
+use App\Models\location;
 
 class TourController extends Controller
 {
@@ -61,8 +62,12 @@ class TourController extends Controller
         return view('tour.edit', ['tour'=>$tour, 'loai'=>$loai]);
     }
 
-    public function ajaxTour(Request $request)
+    public function ajaxTour($id)
     {
-        # code...
+        $location = location::where('tp_id', $id)->get();
+        foreach($location as $item)
+        {
+            echo "<option value='". $item->id ."'>". $item->dd_ten ."</option>";
+        }
     }
 }

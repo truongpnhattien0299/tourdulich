@@ -39,6 +39,7 @@
                 <div class="form-group">
                     <label for="city">Choose city</label>
                     <select class="form-control" id="city" name="city">
+                        <option value="-1" selected>--None</option>
                         @foreach ($city as $item)
                             <option value="{{ $item->tp_id }}">{{ $item->tp_name }}</option>
                         @endforeach
@@ -49,23 +50,20 @@
                         <div class="form-group row">
                             <div class="col-sm-12">
                                 <select class="form-control" multiple size="7" id="left">
-                                    <option>America</option>
-                                    <option>Italy</option>
-                                    <option>Russia</option>
-                                    <option>Britain</option>
+                                    
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="template-demo d-flex justify-content-between flex-nowrap">
-                            <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon">
+                            <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" id="btn-right">
                                 <i class="mdi mdi-arrow-right"></i>
                             </button>
                             
                         </div>
                         <div class="template-demo d-flex justify-content-between flex-nowrap">
-                            <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon">
+                            <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" id="btn-left">
                                 <i class="mdi mdi-arrow-left"></i>
                             </button>
                         </div>
@@ -74,10 +72,6 @@
                         <div class="form-group row">
                             <div class="col-sm-12">
                                 <select class="form-control" multiple size="7" id="right">
-                                    <option>America</option>
-                                    <option>Italy</option>
-                                    <option>Russia</option>
-                                    <option>Britain</option>
                                 </select>
                             </div>
                         </div>
@@ -107,10 +101,15 @@
 @section('script')
     <script>
         $(document).ready(function(){
-            $("button").click(function(){
-                $.ajax({url: "demo_test.txt", type: "get" ,success: function(result){
-                    $("#div1").html(result);
-                }});
+            $("#city").change(function(){
+                var id = $(this).val();
+                $.get("ajax&id="+id, function(data){
+                    $("#left").html(data);
+                });
+            });
+            $("#btn-right").click(function(){
+                var s = $("#left").val();
+                alert(s);
             });
         });
     </script>
