@@ -115,8 +115,8 @@
             $("#btn-right").click(function(){
                 var s = $("#left").val();
                 for(var i=0;i < a.length;i++){
-                    if(a[i]["id"]!=s){
-
+                    if(a[i]["id"]==s){
+                        alert(a[i]["id"]);
                     }
                 }
                 alert(a["id"]);
