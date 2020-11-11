@@ -71,7 +71,7 @@
                     <div class="col-md-4">
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <select class="form-control" size="7" id="right">
+                                <select class="form-control" size="7" id="right" name="slLocation">
                                 </select>
                             </div>
                         </div>
@@ -90,8 +90,8 @@
                         </div>
                     </div>
                   </div>
-                <input type="submit" class="btn btn-gradient-primary mr-2" value="Submit"/>
-                <button type="reset" class="btn btn-light">Reset</button>
+                <input type="submit" class="btn btn-gradient-primary mr-2" value="Submit" />
+                <button type="reset" class="btn btn-light" id="submit">Reset</button>
             </form>
         </div>
     </div>
@@ -192,6 +192,11 @@
                 for(let i=0; i<arr.length; i++)
                     s+=arr[i]["val"];
                 $("#right").html(s);
+            });
+
+            $("#submit").click(function(){
+                var id = $(this).val();
+                
             });
         });
     </script>

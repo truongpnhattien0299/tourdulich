@@ -38,16 +38,18 @@ class TourController extends Controller
 
     public function postAddTour(Request $request)
     {
-        try{
+        // try{
             $tour = new Tour;
             $tour->tour_ten = $request->nametour;
             $tour->tour_mota = $request->txtDescript;
             $tour->loai_id = $request->catetour;
-            $tour->save();
-        }catch(QueryException $e){
-            return back()->withError('Can\'t create new category. Because form incomplete')->withInput();
-        }
-        return redirect('tour/listtour');
+            $data = $_POST['data'];
+            dd($data);
+            // $tour->save();
+        // }catch(QueryException $e){
+        //     return back()->withError('Can\'t create new Tour. Because form incomplete')->withInput();
+        // }
+        // return redirect('tour/listtour');
     }
 
     public function getEditTour($id)
