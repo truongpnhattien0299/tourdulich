@@ -49,7 +49,7 @@
                     <div class="col-md-4">
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <select class="form-control" multiple size="7" id="left">
+                                <select class="form-control" size="7" id="left">
 
                                 </select>
                             </div>
@@ -57,13 +57,13 @@
                     </div>
                     <div class="col-md-2">
                         <div class="template-demo d-flex justify-content-between flex-nowrap">
-                            <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" id="btn-right">
+                            <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" for="left" id="btn-right">
                                 <i class="mdi mdi-arrow-right"></i>
                             </button>
 
                         </div>
                         <div class="template-demo d-flex justify-content-between flex-nowrap">
-                            <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" id="btn-left">
+                            <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" for="left" id="btn-left">
                                 <i class="mdi mdi-arrow-left"></i>
                             </button>
                         </div>
@@ -71,20 +71,20 @@
                     <div class="col-md-4">
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <select class="form-control" multiple size="7" id="right">
+                                <select class="form-control" size="7" id="right">
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="template-demo d-flex justify-content-between flex-nowrap">
-                            <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon">
+                            <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" for="right" id="btn-up">
                                 <i class="mdi mdi-arrow-up"></i>
                             </button>
 
                         </div>
                         <div class="template-demo d-flex justify-content-between flex-nowrap">
-                            <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon">
+                            <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" for="right" id="btn-down">
                                 <i class="mdi mdi-arrow-down"></i>
                             </button>
                         </div>
@@ -108,16 +108,13 @@
                 });
             });
             var arr = [], opt = {};
-            var s="";
             $("#btn-right").click(function(){
                 if(arr.length==0)
                 {
                     var id = $("#left").val();
-                    var city_id = "<option>"+$('#city_'+id).html()+"</option>";
+                    var city_id = "<option value='"+id+"'>"+$('#city_'+id).html()+"</option>";
                     opt = {id: id, val: city_id};
                     arr.push(opt);
-                    s = arr[0]['val']
-                    $("#right").html(s);
                 }
                 else
                 {
@@ -136,13 +133,65 @@
                     }
                     if(flag==0)
                     {
-                        var city_id = "<option>"+$('#city_'+id).html()+"</option>";
+                        var city_id = "<option value='"+ id +"'>"+$('#city_'+id).html()+"</option>";
                         opt = {id: id, val: city_id};
                         arr.push(opt);
-                        s += arr[i]['val'];
-                        $("#right").html(s);
                     }
                 }
+                var s= "";
+                for(let i=0; i<arr.length; i++)
+                    s+=arr[i]["val"];
+                $("#right").html(s);
+            });
+
+            $("#btn-left").click(function(){
+                var id = $("#right").val();
+                var s="";
+                for(let i=0; i<arr.length; i++)
+                {
+                    var tmp = arr[i]['id'] * 1;
+                    if(tmp==id)
+                        arr.splice(i, 1);
+                }
+                for(let i=0; i<arr.length; i++)
+                    s+=arr[i]["val"];
+                $("#right").html(s);
+            });
+
+            $("#btn-up").click(function(){
+                var id = $("#right").val();
+                var s="";
+                for(let i=0; i<arr.length; i++)
+                {
+                    var tmp = arr[i]['id'] * 1;
+                    if(tmp==id && i!=0)
+                    {
+                        objtmp = {id:arr[i]["id"], val:arr[i]["val"]};
+                        arr[i] = arr[i-1];
+                        arr[i-1] = objtmp;
+                    }
+                }
+                for(let i=0; i<arr.length; i++)
+                    s+=arr[i]["val"];
+                $("#right").html(s);
+            });
+
+            $("#btn-down").click(function(){
+                var id = $("#right").val();
+                var s="";
+                for(let i=arr.length-1; i>=0; i--)
+                {
+                    var tmp = arr[i]['id'] * 1;
+                    if(tmp==id && i!=arr.length-1)
+                    {
+                        objtmp = {id:arr[i]["id"], val:arr[i]["val"]};
+                        arr[i] = arr[i+1];
+                        arr[i+1] = objtmp;
+                    }
+                }
+                for(let i=0; i<arr.length; i++)
+                    s+=arr[i]["val"];
+                $("#right").html(s);
             });
         });
     </script>
