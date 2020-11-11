@@ -49,7 +49,7 @@
                     <div class="col-md-4">
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <select class="form-control" multiple size="7" id="left">
+                                <select class="form-control" size="7" id="left">
 
                                 </select>
                             </div>
@@ -57,13 +57,13 @@
                     </div>
                     <div class="col-md-2">
                         <div class="template-demo d-flex justify-content-between flex-nowrap">
-                            <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" id="btn-right">
+                            <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" for="left" id="btn-right">
                                 <i class="mdi mdi-arrow-right"></i>
                             </button>
 
                         </div>
                         <div class="template-demo d-flex justify-content-between flex-nowrap">
-                            <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" id="btn-left">
+                            <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" for="left" id="btn-left">
                                 <i class="mdi mdi-arrow-left"></i>
                             </button>
                         </div>
@@ -71,20 +71,20 @@
                     <div class="col-md-4">
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <select class="form-control" multiple size="7" id="right">
+                                <select class="form-control" size="7" id="right">
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="template-demo d-flex justify-content-between flex-nowrap">
-                            <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon">
+                            <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" for="right" id="btn-up">
                                 <i class="mdi mdi-arrow-up"></i>
                             </button>
 
                         </div>
                         <div class="template-demo d-flex justify-content-between flex-nowrap">
-                            <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon">
+                            <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" for="right" id="btn-down">
                                 <i class="mdi mdi-arrow-down"></i>
                             </button>
                         </div>
@@ -107,11 +107,7 @@
                     $("#left").html(data);
                 });
             });
-            var a=[{
-                    id:""
-            }];
-            var item;
-            var city_id;
+            var arr = [], opt = {};
             $("#btn-right").click(function(){
                 var s = $("#left").val();
                 for(var i=0;i < a.length;i++){
@@ -119,9 +115,9 @@
                         alert(a[i]["id"]);
                     }
                 }
-                alert(a["id"]);
-                city_id+="<option>"+$('#city_'+s).html()+"</option>";
-                $("#right").html(city_id);
+                for(let i=0; i<arr.length; i++)
+                    s+=arr[i]["val"];
+                $("#right").html(s);
             });
         });
     </script>
