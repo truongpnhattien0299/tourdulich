@@ -25,9 +25,17 @@
                     <input type="text" class="form-control" id="name" name="name" value="{{ $Group->doan_name }}" placeholder="Fullname">
                 </div>
                 <div class="form-group">
-                    <label for="tour">Tour</label>
-                    <input type="text" class="form-control" id="tour" name="tour" value="{{ $Group->tour_id }}" placeholder="Tour">
-                </div>
+                    <label for="listtour">Tour</label>
+                    <select class="form-control" id="listtour" name="tour">
+                        @foreach ($tour as $item)
+                            @if($item->tour_id == $Group->tour_id)
+                                <option value="{{$item->tour_id}}" selected>{{$item->tour_ten}}</option>
+                            @else
+                                <option value="{{$item->tour_id}}">{{$item->tour_ten}}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                  </div>
                 <div class="form-group">
                     <label for="start">Day Start</label>
                     <input type="date" class="form-control" id="start" name="start" value="{{ $Group->doan_ngaydi }}" placeholder="Day Start">
@@ -37,8 +45,8 @@
                     <input type="date" class="form-control" id="end" name="end" value="{{ $Group->doan_ngayve }}" placeholder="Day End">
                 </div>
                 <div class="form-group">
-                    <label for="mission">Mission</label>
-                    <input type="text" class="form-control" id="mission" name="mission" value="{{ $Group->nv_nhiemvu }}" placeholder="Mission">
+                    <label for="details">Details</label>
+                    <input type="text" class="form-control" id="details" name="details" value="{{ $Group->doan_chitietchuongtrinh }}" placeholder="Mission">
                 </div>
                 <input type="submit" class="btn btn-gradient-primary mr-2" value="Submit"/>
                 <button type="reset" class="btn btn-light">Reset</button>

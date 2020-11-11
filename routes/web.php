@@ -23,12 +23,12 @@ Route::group(['prefix' => 'Employee'], function () {
 });
 
 Route::group(['prefix' => 'Group'], function () {
-    Route::get('listgrp', 'GroupController@getGroup');
-    Route::get('addgrp', 'GroupController@getAddGroup');
-    Route::post('addgrp', 'GroupController@postAddGroup');
-    Route::get('editgrp&id={id}', 'GroupController@getEditGroup');
-    Route::post('editgrp&id={id}', 'GroupController@postGroup');
-    Route::get('delete&id={id}', 'GroupController@deleteGroup');
+    Route::get('listgrp', 'groupController@getGroup');
+    Route::get('addgrp', 'groupController@getAddGroup');
+    Route::post('addgrp', 'groupController@postAddGroup');
+    Route::get('editgrp&id={id}', 'groupController@getEditGroup');
+    Route::post('editgrp&id={id}', 'groupController@postEditGroup');
+    Route::get('delete&id={id}', 'groupController@deleteGroup');
 });
 
 
@@ -39,6 +39,15 @@ Route::group(['prefix' => 'Location'], function () {
     Route::get('editlct&id={id}', 'locationController@getEditlocation');
     Route::post('editlct&id={id}', 'locationController@postEditlocation');
     Route::get('delete&id={id}', 'locationController@deletelocation');
+});
+
+Route::group(['prefix' => 'tourprice'], function () {
+    Route::get('listprc', 'tourpriceController@gettourprice');
+    Route::get('addprc', 'tourpriceController@getAddtourprice');
+    Route::post('addprc', 'tourpriceController@postAddtourprice');
+    Route::get('editprc&id={id}', 'tourpriceController@getEdittourprice');
+    Route::post('editprc&id={id}', 'tourpriceController@postEdittourprice');
+    Route::get('delete&id={id}', 'tourpriceController@deletetourprice');
 });
 
 Route::group(['prefix' => 'category'], function () {

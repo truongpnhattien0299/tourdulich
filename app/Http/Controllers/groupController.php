@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\tour;
 use App\Models\group;
 use Illuminate\Database\QueryException;
 
@@ -21,51 +22,53 @@ class groupController extends Controller
 
     public function getAddgroup()
     {
-        return view('group.add');
+        $tour = Tour::all();
+        return view('group.add',['tour'=>$tour]);
     }
 
     public function postAddgroup(Request $request)
     {
         try{
             $group = new group;
-            $group->tour_id = $request->tour_id;
+            $group->tour_id = $request->tour;
             $group->doan_name = $request->name;
-            $group->doan_ngaydi = $request->ngaydi;
-            $group->doan_ngayve = $request->ngayve;
-            $group->doan_chitietchuongtrinh = $request->chitiet;
+            $group->doan_ngaydi = $request->start;
+            $group->doan_ngayve = $request->end;
+            $group->doan_chitietchuongtrinh = $request->details;
             $group->save();
         }catch(QueryException $e){
             return back()->withError('Can\'t create new group. Because form incomplete')->withInput();
         }
-        return redirect('group/listgrp');
+        return redirect('Group/listgrp');
     }
 
     public function getEditgroup($id)
     {
         $group = group::find($id);
-        return view('group.edit',['group' => $group]);
+        $tour = tour::all();
+        return view('group.edit',['Group' => $group,'tour'=>$tour]);
     }
 
     public function postEditgroup(Request $request, $id)
     {
         try{
             $group = group::find($id);
-            $group->tour_id = $request->tour_id;
+            $group->tour_id = $request->tour;
             $group->doan_name = $request->name;
-            $group->doan_ngaydi = $request->ngaydi;
-            $group->doan_ngayve = $request->ngayve;
-            $group->doan_chitietchuongtrinh = $request->chitiet;
+            $group->doan_ngaydi = $request->start;
+            $group->doan_ngayve = $request->end;
+            $group->doan_chitietchuongtrinh = $request->details;
             $group->save();
         }catch(QueryException $e){
             return back()->withError('Can\'t create new group. Because form incomplete');
         }
-        return redirect('group/listgrp');
+        return redirect('Group/listgrp');
     }
 
     public function deletegroup($id)
     {
         $group = group::find($id);
         $group->delete();
-        return redirect('group/listgrp');
+        return redirect('Group/listgrp');
     }
 }

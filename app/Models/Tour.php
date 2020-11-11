@@ -19,10 +19,14 @@ class Tour extends Model
 
     public function doantour()
     {
-        return $this->belongsTo('App\Models\group', 'tour_id', 'tour_id');
+        return $this->hasMany('App\Models\group', 'tour_id', 'tour_id');
     }
     public function tour_detail()
     {
         return $this->hasMany('App\Models\tourdetail', 'tour_id', 'tour_id');
+    }
+    public function tourprice()
+    {
+        return $this->belongsTo('App\Models\tourprice', 'tour_id', 'tour_id');
     }
 }

@@ -3,8 +3,8 @@
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Create new Group</h4>
-            <p class="card-description"> <a href="listgrp">&lArr; Back List</a> </p>
+            <h4 class="card-title">Create new Tour Price</h4>
+            <p class="card-description"> <a href="listprc">&lArr; Back List</a> </p>
             @if (session('error'))
                 <div id="idError">
                     <div class="alert alert-danger">{{ session('error') }}</div>
@@ -18,11 +18,11 @@
                 </script>
             @endif
 
-            <form class="forms-sample" action="addgrp" method="POST">
+            <form class="forms-sample" action="addprc" method="POST">
                 @csrf
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" placeholder="Fullname">
+                    <label for="price">Price</label>
+                    <input type="text" class="form-control" id="price" name="price" value="{{ old('price') }}" placeholder="Price">
                 </div>
                 <div class="form-group">
                     <label for="listtour">Tour</label>
@@ -38,11 +38,7 @@
                 </div>
                 <div class="form-group">
                     <label for="end">Day End</label>
-                    <input type="date" class="form-control" id="end" name="end" value="{{ old('start') }}" placeholder="Day End">
-                </div>
-                <div class="form-group">
-                    <label for="details">Details</label>
-                    <input type="text" class="form-control" id="details" name="details" value="{{ old('details') }}" placeholder="Details">
+                    <input type="date" class="form-control" id="end" name="end" value="{{ old('end') }}" placeholder=" Day End">
                 </div>
                 <input type="submit" class="btn btn-gradient-primary mr-2" value="Submit"/>
                 <button type="reset" class="btn btn-light">Reset</button>

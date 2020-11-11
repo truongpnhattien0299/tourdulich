@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="page-header">
-    <h3 class="page-title"> Group </h3>
+    <h3 class="page-title"> Tour Price </h3>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Tables</a></li>
@@ -15,7 +15,7 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">List</h4>
-          <p class="card-description"> <a href="/Group/addgrp"> Create new </a> </p>
+          <p class="card-description"> <a href="/tourprice/addprc"> Create new </a> </p>
           <table class="table table-striped">
             @if (session('notice'))
                 <div class="alert alert-danger">{{ session('notice') }}</div>
@@ -23,28 +23,25 @@
               <thead>
                 <tr>
                   <th> id </th>
-                  <th> Name </th>
+                  <th> Price </th>
                   <th> Tour </th>
-                  <th> Start </th>
-                  <th> End </th>
-                  <th> Details </th>
+                  <th> Day Start </th>
+                  <th> Day End </th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($group as $item)
-
+                @foreach ($tourprice as $item)
                 <tr>
-                  <td> {{$item->doan_id}} </td>
-                  <td> {{$item->doan_name}} </td>
+                  <td> {{$item->gia_id}} </td>
+                  <td> {{$item->gia_sotien}} </td>
                   <td> {{$item->tour->tour_ten}} </td>
-                  <td> {{$item->doan_ngaydi}} </td>
-                  <td> {{$item->doan_ngayve}} </td>
-                  <td> {{$item->doan_chitietchuongtrinh}} </td>
+                  <td> {{$item->gia_tungay}} </td>
+                  <td> {{$item->gia_denngay}} </td>
                   <td>
                     <div class="btn-group">
                       <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" style="padding: 10%">Select</button>
                       <div class="dropdown-menu" style="min-width: 10px">
-                        <a href="editgrp&id={{$item->doan_id}}" class="dropdown-item">Edit</a>
+                        <a href="editprc&id={{$item->gia_id}}" class="dropdown-item">Edit</a>
                         <a onclick="del()" id="del" class="dropdown-item">Delete</a>
                       </div>
                     </div>
@@ -66,9 +63,9 @@
   <script>
     function del()
     {
-      var a = confirm("Are you sure you want to DELETE this Group");
+      var a = confirm("Are you sure you want to DELETE this Tour Price");
       if(a)
-        location.replace("delete&id={{$item->doan_id}}");
+        location.replace("delete&id={{$item->gia_id}}");
     }
   </script>
   @endsection
