@@ -109,10 +109,84 @@
             });
             var arr = [], opt = {};
             $("#btn-right").click(function(){
-                var s = $("#left").val();
-                for(var i=0;i < a.length;i++){
-                    if(a[i]["id"]==s){
-                        alert(a[i]["id"]);
+                if(arr.length==0)
+                {
+                    var id = $("#left").val();
+                    var city_id = "<option value='"+id+"'>"+$('#city_'+id).html()+"</option>";
+                    opt = {id: id, val: city_id};
+                    arr.push(opt);
+                }
+                else
+                {
+                    var id = $("#left").val();
+                    var flag = 0;
+                    var i;
+                    for(i=0; i<arr.length; i++)
+                    {
+                        var tmp = arr[i]['id'] * 1;
+                        if(id==tmp)
+                        {
+                            alert("This location have choosed");
+                            flag = 1;
+                            break;
+                        }
+                    }
+                    if(flag==0)
+                    {
+                        var city_id = "<option value='"+ id +"'>"+$('#city_'+id).html()+"</option>";
+                        opt = {id: id, val: city_id};
+                        arr.push(opt);
+                    }
+                }
+                var s= "";
+                for(let i=0; i<arr.length; i++)
+                    s+=arr[i]["val"];
+                $("#right").html(s);
+            });
+
+            $("#btn-left").click(function(){
+                var id = $("#right").val();
+                var s="";
+                for(let i=0; i<arr.length; i++)
+                {
+                    var tmp = arr[i]['id'] * 1;
+                    if(tmp==id)
+                        arr.splice(i, 1);
+                }
+                for(let i=0; i<arr.length; i++)
+                    s+=arr[i]["val"];
+                $("#right").html(s);
+            });
+
+            $("#btn-up").click(function(){
+                var id = $("#right").val();
+                var s="";
+                for(let i=0; i<arr.length; i++)
+                {
+                    var tmp = arr[i]['id'] * 1;
+                    if(tmp==id && i!=0)
+                    {
+                        objtmp = {id:arr[i]["id"], val:arr[i]["val"]};
+                        arr[i] = arr[i-1];
+                        arr[i-1] = objtmp;
+                    }
+                }
+                for(let i=0; i<arr.length; i++)
+                    s+=arr[i]["val"];
+                $("#right").html(s);
+            });
+
+            $("#btn-down").click(function(){
+                var id = $("#right").val();
+                var s="";
+                for(let i=arr.length-1; i>=0; i--)
+                {
+                    var tmp = arr[i]['id'] * 1;
+                    if(tmp==id && i!=arr.length-1)
+                    {
+                        objtmp = {id:arr[i]["id"], val:arr[i]["val"]};
+                        arr[i] = arr[i+1];
+                        arr[i+1] = objtmp;
                     }
                 }
                 for(let i=0; i<arr.length; i++)

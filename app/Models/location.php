@@ -16,4 +16,8 @@ class location extends Model
     {
         return $this->belongsTo('App\Models\listcity', 'tp_id', 'tp_id');
     }
+    public function tour_detail()
+    {
+        return $this->belongsTo('App\Models\location', 'id', 'dd_id');
+    }
 }
