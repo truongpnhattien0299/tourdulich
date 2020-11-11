@@ -18,6 +18,6 @@ class location extends Model
     }
     public function tour_detail()
     {
-        return $this->belongsTo('App\Models\location', 'id', 'dd_id');
+        return $this->hasMany('App\Models\tourdetail', 'id', 'dd_id');
     }
 }

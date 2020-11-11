@@ -71,7 +71,7 @@
                     <div class="col-md-4">
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <select class="form-control" size="7" id="right" name="slLocation">
+                                <select class="form-control" multiple size="7" id="right" name="slLocation[]">
                                 </select>
                             </div>
                         </div>
@@ -90,8 +90,8 @@
                         </div>
                     </div>
                   </div>
-                <input type="submit" class="btn btn-gradient-primary mr-2" value="Submit" />
-                <button type="reset" class="btn btn-light" id="submit">Reset</button>
+                <input type="submit" class="btn btn-gradient-primary mr-2" value="Submit" id="submit" />
+                <button type="reset" class="btn btn-light">Reset</button>
             </form>
         </div>
     </div>
@@ -112,7 +112,7 @@
                 if(arr.length==0)
                 {
                     var id = $("#left").val();
-                    var city_id = "<option value='"+id+"'>"+$('#city_'+id).html()+"</option>";
+                    var city_id = "<option selected value='"+id+"'>"+$('#city_'+id).html()+"</option>";
                     opt = {id: id, val: city_id};
                     arr.push(opt);
                 }
@@ -133,7 +133,7 @@
                     }
                     if(flag==0)
                     {
-                        var city_id = "<option value='"+ id +"'>"+$('#city_'+id).html()+"</option>";
+                        var city_id = "<option selected value='"+ id +"'>"+$('#city_'+id).html()+"</option>";
                         opt = {id: id, val: city_id};
                         arr.push(opt);
                     }
@@ -192,11 +192,6 @@
                 for(let i=0; i<arr.length; i++)
                     s+=arr[i]["val"];
                 $("#right").html(s);
-            });
-
-            $("#submit").click(function(){
-                var id = $(this).val();
-                
             });
         });
     </script>

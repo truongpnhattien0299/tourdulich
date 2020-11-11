@@ -56,6 +56,6 @@ Route::group(['prefix' => 'tour'], function () {
     Route::post('addtour', 'TourController@postAddTour');
     Route::get('edit&id={id}', 'TourController@getEditTour');
     Route::post('edit&id={id}', 'TourController@postEditTour');
-    Route::get('delete&id={id}', 'LoaitourController@deleteLoai');
+    Route::get('delete&id={id}', 'TourController@deleteTour');
     Route::get('ajax&id={id}', 'TourController@ajaxTour');
 });
