@@ -76,8 +76,17 @@
                         <div class="form-group row">
                             <div class="col-sm-12">
                                 <select class="form-control" multiple size="7" id="right" name="slLocation[]">
+                                    <script>
+                                        var arr= []; var opt ={};
+                                    </script>
                                     @foreach ($tourdetail as $item)
-                                        <option value="">{{$item->location->dd_ten}}</option>
+                                        <option value="{{ $item->location->id }}">{{ $item->location->dd_ten }}</option>
+                                        <script>
+                                            var id = "{{ $item->location->id }}";
+                                            var city_id = "<option selected value='"+ id +"'>{{ $item->location->dd_ten }}</option>";
+                                            opt = {id:id, val: city_id};
+                                            arr.push(opt);
+                                        </script>
                                     @endforeach
                                 </select>
                             </div>
@@ -114,7 +123,6 @@
                     $("#left").html(data);
                 });
             });
-            var arr = [], opt = {};
             $("#btn-right").click(function(){
                 if(arr.length==0)
                 {
