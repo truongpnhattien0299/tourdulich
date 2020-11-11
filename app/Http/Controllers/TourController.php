@@ -7,6 +7,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Database\ModelNotFoundException;
 
 use App\Models\Tour;
+use App\Models\tourdetail;
 use App\Models\listcity;
 use App\Models\Loaitour;
 use App\Models\location;
@@ -44,22 +45,38 @@ class TourController extends Controller
             $tour->tour_mota = $request->txtDescript;
             $tour->loai_id = $request->catetour;
             $tour->save();
+
+            $tour = Tour::orderBy('tour_id', 'desc')->first();
+            $arr = $request->slLocation;
+            for($i=0; $i<count($arr); $i++)
+            {
+                $tourdetail = new tourdetail;
+                $tourdetail->tour_id = $tour->tour_id;
+                $tourdetail->dd_id = $arr[$i];
+                $tourdetail->ct_thutu = $i;
+                $tourdetail->save();
+            }
         }catch(QueryException $e){
-            return back()->withError('Can\'t create new category. Because form incomplete')->withInput();
+            return back()->withError('Can\'t create new Tour. Because form incomplete')->withInput();
         }
         return redirect('tour/listtour');
     }
 
     public function getEditTour($id)
     {
+        $city = listcity::all();
         $loai = Loaitour::all();
         $tour = Tour::find($id);
-        if($loai->first()==null)
-        {
-            session()->put('notice','Don\'t have any Category of tour');
-            return view('tour.edit');
-        }
-        return view('tour.edit', ['tour'=>$tour, 'loai'=>$loai]);
+        $tourdetail = tourdetail::where('tour_id', $id)->orderBy('ct_thutu', 'asc')->get();
+        // dd($tourdetail);
+        return view('tour.edit', ['tour'=>$tour, 'tourdetail'=>$tourdetail, 'loai'=>$loai, 'city'=>$city]);
+    }
+
+    public function deleteTour($id)
+    {
+        $tour = Tour::find($id);
+        $tour->delete();
+        return redirect('tour/listtour');
     }
 
     public function ajaxTour($id)
