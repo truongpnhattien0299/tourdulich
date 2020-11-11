@@ -21,4 +21,8 @@ class Tour extends Model
     {
         return $this->belongsTo('App\Models\group', 'tour_id', 'tour_id');
     }
+    public function tour_detail()
+    {
+        return $this->hasMany('App\Models\tourdetail', 'tour_id', 'tour_id');
+    }
 }
