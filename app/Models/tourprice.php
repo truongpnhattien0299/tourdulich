@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class group extends Model
+class tourprice extends Model
 {
     use HasFactory;
-    protected $table = "tour_doan";
-    protected $primaryKey="doan_id";
+    protected $table = "tour_gia";
+    protected $primaryKey="gia_id";
     public $timestamps = false;
 
     public function tour()
