@@ -45,7 +45,7 @@
                       <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" style="padding: 10%">Select</button>
                       <div class="dropdown-menu" style="min-width: 10px">
                         <a href="editgrp&id={{$item->doan_id}}" class="dropdown-item">Edit</a>
-                        <a onclick="del()" id="del" class="dropdown-item">Delete</a>
+                        <a onclick="del()" id="del" class="dropdown-item" style="cursor: pointer">Delete</a>
                       </div>
                     </div>
                   </td>

@@ -68,7 +68,6 @@ class TourController extends Controller
         $loai = Loaitour::all();
         $tour = Tour::find($id);
         $tourdetail = tourdetail::where('tour_id', $id)->orderBy('ct_thutu', 'asc')->get();
-        // dd($tourdetail);
         return view('tour.edit', ['tour'=>$tour, 'tourdetail'=>$tourdetail, 'loai'=>$loai, 'city'=>$city]);
     }
 

@@ -142,7 +142,7 @@
                   </ul>
                 </div>
               </li>
-            <li class="nav-item">
+              <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#Employee" aria-expanded="false" aria-controls="Employee">
                   <span class="menu-title">Employee</span>
                   <i class="menu-arrow"></i>
@@ -152,6 +152,19 @@
                   <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="/Employee/listemp"> List </a></li>
                     <li class="nav-item"> <a class="nav-link" href="/Employee/addemp"> Add </a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#Typecost" aria-expanded="false" aria-controls="Typecost">
+                  <span class="menu-title">Type cost</span>
+                  <i class="menu-arrow"></i>
+                  <i class="mdi mdi-medical-bag menu-icon"></i>
+                </a>
+                <div class="collapse" id="Typecost">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="/typecost/listtc"> List </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/typecost/addtc"> Add </a></li>
                   </ul>
                 </div>
               </li>
