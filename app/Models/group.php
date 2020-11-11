@@ -16,4 +16,9 @@ class group extends Model
     {
         return $this->belongsTo('App\Models\Tour', 'tour_id', 'tour_id');
     }
+
+    public function visitor()
+    {
+        return $this->hasMany('App\Models\visitor', 'doan_id', 'doan_id');
+    }
 }
