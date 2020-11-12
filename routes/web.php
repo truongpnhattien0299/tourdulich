@@ -20,6 +20,14 @@ Route::group(['prefix' => 'Employee'], function () {
     Route::get('delete&id={id}', 'EmployeeController@deleteEmployee');
 });
 
+Route::group(['prefix' => 'Listgroup'], function () {
+    Route::get('listlgrp', 'ListgroupController@getListgroup');
+    Route::get('addlgrp', 'ListgroupController@getAddListgroup');
+    Route::post('addlgrp', 'ListgroupController@postAddListgroup');
+    Route::get('editlgrp&id={id}', 'ListgroupController@getEditListgroup');
+    Route::post('editlgrp&id={id}', 'ListgroupController@postEditListgroup');
+    Route::get('delete&id={id}', 'ListgroupController@deleteEmployee');
+});
 Route::group(['prefix' => 'Group'], function () {
     Route::get('listgrp', 'groupController@getGroup');
     Route::get('addgrp', 'groupController@getAddGroup');
