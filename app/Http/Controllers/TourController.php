@@ -71,6 +71,44 @@ class TourController extends Controller
         return view('tour.edit', ['tour'=>$tour, 'tourdetail'=>$tourdetail, 'loai'=>$loai, 'city'=>$city]);
     }
 
+    public function postEditTour(Request $request, $id)
+    {
+        try{
+            $tour = Tour::find($id);
+            $tour->tour_ten = $request->nametour;
+            $tour->tour_mota = $request->txtDescript;
+            $tour->loai_id = $request->catetour;
+            $tour->save();
+            $arr = $request->slLocation;
+            $tourdetail = tourdetail::where('tour_id', $id)->get();
+            for($i=0; $i<count($arr); $i++)
+            {
+                $flag = 0;
+                foreach($tourdetail as $detail)
+                {
+                    if($detail->dd_id == $arr[$i])
+                    {
+                        $flag = 1;
+                        $detail->ct_thutu = $i;
+                        $detail->save();
+                    }
+                }
+                if($flag==0)
+                {
+                    $newtourdetail = new tourdetail;
+                    $newtourdetail->tour_id = $id;
+                    $newtourdetail->dd_id = $arr[$i];
+                    $newtourdetail->ct_thutu = $i;
+                    $newtourdetail->save();
+                }
+            }
+            
+        }catch(QueryException $e){
+            return back()->withError('Can\'t Edit the Tour. Because form incomplete')->withInput();
+        }
+        return redirect('tour/listtour');
+    }
+
     public function deleteTour($id)
     {
         $tour = Tour::find($id);
