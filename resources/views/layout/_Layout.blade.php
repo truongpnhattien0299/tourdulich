@@ -130,6 +130,19 @@
                 </div>
               </li>
               <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#listgroup" aria-expanded="false" aria-controls="listgroup">
+                  <span class="menu-title">List Group</span>
+                  <i class="menu-arrow"></i>
+                  <i class="mdi mdi-medical-bag menu-icon"></i>
+                </a>
+                <div class="collapse" id="listgroup">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="/Listgroup/listlgrp"> List </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/Listgroup/addlgrp"> Add </a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#tourprice" aria-expanded="false" aria-controls="tourprice">
                   <span class="menu-title">Tour price</span>
                   <i class="menu-arrow"></i>
