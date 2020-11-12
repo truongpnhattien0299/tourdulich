@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="page-header">
-    <h3 class="page-title"> Tour Price </h3>
+    <h3 class="page-title"> Type Cost </h3>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Tables</a></li>
@@ -15,7 +15,7 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">List</h4>
-          <p class="card-description"> <a href="/tourprice/addprc"> Create new </a> </p>
+          <p class="card-description"> <a href="/typecost/addtc"> Create new </a> </p>
           <table class="table table-striped">
             @if (session('notice'))
                 <div class="alert alert-danger">{{ session('notice') }}</div>
@@ -23,25 +23,22 @@
               <thead>
                 <tr>
                   <th> id </th>
-                  <th> Price </th>
-                  <th> Tour </th>
-                  <th> Day Start </th>
-                  <th> Day End </th>
+                  <th> Name </th>
+                  <th> Description </th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($tourprice as $item)
+                @foreach ($loaichiphi as $item)
+
                 <tr>
-                  <td> {{$item->gia_id}} </td>
-                  <td> {{$item->gia_sotien}} </td>
-                  <td> {{$item->tour->tour_ten}} </td>
-                  <td> {{$item->gia_tungay}} </td>
-                  <td> {{$item->gia_denngay}} </td>
+                  <td> {{$item->cp_id}} </td>
+                  <td> {{$item->cp_ten}} </td>
+                  <td> {{$item->cp_mota}} </td>
                   <td>
                     <div class="btn-group">
                       <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" style="padding: 10%">Select</button>
                       <div class="dropdown-menu" style="min-width: 10px">
-                        <a href="editprc&id={{$item->gia_id}}" class="dropdown-item">Edit</a>
+                        <a href="edit&id={{$item->cp_id}}" class="dropdown-item">Edit</a>
                         <a onclick="del()" id="del" class="dropdown-item" style="cursor: pointer">Delete</a>
                       </div>
                     </div>
@@ -63,9 +60,9 @@
   <script>
     function del()
     {
-      var a = confirm("Are you sure you want to DELETE this Tour Price");
+      var a = confirm("Are you sure you want to DELETE this customer");
       if(a)
-        location.replace("delete&id={{$item->gia_id}}");
+        location.replace("delete&id={{$item->cp_id}}");
     }
   </script>
   @endsection

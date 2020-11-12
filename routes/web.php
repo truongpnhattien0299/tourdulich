@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-// use App\Models\Khachang;
-
 Route::group(['prefix' => 'customer'], function () {
     Route::get('listcus', 'KhachangController@getKH');
     Route::get('addcus', 'KhachangController@getAddKH');
@@ -75,4 +73,22 @@ Route::group(['prefix' => 'tour'], function () {
     Route::post('edit&id={id}', 'TourController@postEditTour');
     Route::get('delete&id={id}', 'TourController@deleteTour');
     Route::get('ajax&id={id}', 'TourController@ajaxTour');
+});
+
+Route::group(['prefix' => 'typecost'], function () {
+    Route::get('listtc', 'LoaichiphiController@getTc');
+    Route::get('addtc', 'LoaichiphiController@getAddTc');
+    Route::post('addtc', 'LoaichiphiController@postAddTc');
+    Route::get('edit&id={id}', 'LoaichiphiController@getEditTc');
+    Route::post('edit&id={id}', 'LoaichiphiController@postEditTc');
+    Route::get('delete&id={id}', 'LoaichiphiController@deleteTc');
+});
+
+Route::group(['prefix' => 'cost'], function () {
+    Route::get('listcp', 'ChiphiController@getCp');
+    Route::get('addcp', 'ChiphiController@getAddCp');
+    Route::post('addcp', 'ChiphiController@postAddCp');
+    Route::get('edit&id={id}', 'ChiphiController@getEditCp');
+    Route::post('edit&id={id}', 'ChiphiController@postEditCp');
+    Route::get('delete&id={id}', 'ChiphiController@deleteCp');
 });

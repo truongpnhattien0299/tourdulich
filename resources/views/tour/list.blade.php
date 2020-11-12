@@ -2,7 +2,7 @@
 @section('content')
     
 <div class="page-header">
-    <h3 class="page-title"> Category Tour </h3>
+    <h3 class="page-title"> Tour </h3>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Tables</a></li>
@@ -22,10 +22,12 @@
             @else
               <thead>
                 <tr>
-                  <th> id </th>
+                  <th> # </th>
                   <th> Name </th>
-                  <th> Category </th>
                   <th> Description </th>
+                  <th> Category </th>
+                  <th> Destinations </th>
+                  <th> Functions </th>
                 </tr>
               </thead>
               <tbody>
@@ -33,16 +35,34 @@
                   <tr>
                       <td> {{$item->tour_id}} </td>
                       <td> {{$item->tour_ten}} </td>
-                      <td> {{$item->loaitour->loai_ten}} </td>
                       <td> {{$item->tour_mota}} </td>
+                      <td> {{$item->loaitour->loai_ten}} </td>
+                      <td>
+                        @php
+                            $i = 1
+                        @endphp
+                        @foreach ($item->tour_detail->sortBy('ct_thutu') as $detail)
+                          {{$detail->location->dd_ten}}
+                          @if (count($item->tour_detail)!=$i)
+                              -
+                          @endif
+                          @if ($i%3==0)
+                              <br>
+                          @endif
+                          @php
+                              $i++
+                          @endphp
+                        @endforeach
+                      </td>
                       <td>  
-                      <div class="btn-group">
+                        <div class="btn-group">
                           <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" style="padding: 10%">Select</button>
                           <div class="dropdown-menu" style="min-width: 10px">
-                          <a href="edit&id={{$item->tour_id}}" class="dropdown-item">Edit</a>
-                          <a onclick="del()" id="del" class="dropdown-item" style="cursor: pointer">Delete</a>
+                            <a href="edit&id={{$item->tour_id}}" class="dropdown-item">Edit</a>
+                            <a href="price&id={{$item->tour_id}}" class="dropdown-item">Price</a>
+                            <a onclick="del()" id="del" class="dropdown-item" style="cursor: pointer">Delete</a>
                           </div>
-                      </div>
+                        </div>
                       </td>
                   </tr>
                   @endforeach

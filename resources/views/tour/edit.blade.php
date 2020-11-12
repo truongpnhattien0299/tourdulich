@@ -18,7 +18,7 @@
                 </script>
             @endif
 
-            <form class="forms-sample" action="addtour" method="POST">
+            <form class="forms-sample" action="edit&id={{ $tour->tour_id }}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="catetour">Category of tour</label>
@@ -42,8 +42,8 @@
                 </div>
                 <div class="form-group">
                     <label for="city">Choose city</label>
-                    <select class="form-control" id="city" name="city">
-                        <option value="-1" selected>--None</option>
+                    <select class="form-control" id="city">
+                        <option selected>--None</option>
                         @foreach ($city as $item)
                             <option value="{{ $item->tp_id }}">{{ $item->tp_name }}</option>
                         @endforeach
@@ -80,7 +80,7 @@
                                         var arr= []; var opt ={};
                                     </script>
                                     @foreach ($tourdetail as $item)
-                                        <option value="{{ $item->location->id }}">{{ $item->location->dd_ten }}</option>
+                                        <option selected value="{{ $item->location->id }}">{{ $item->location->dd_ten }}</option>
                                         <script>
                                             var id = "{{ $item->location->id }}";
                                             var city_id = "<option selected value='"+ id +"'>{{ $item->location->dd_ten }}</option>";
