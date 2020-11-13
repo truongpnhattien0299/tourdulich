@@ -72,9 +72,15 @@ class groupController extends Controller
         $group->delete();
         return redirect('Group/listgrp');
     }
-    public function pricegroup($id)
+    public function priceGroup($id, $start)
     {
-        $tourprice = tourprice::where('tour_id', $id)->get();;
-        return view('group.add',['tourprice'=>$tourprice]);
+        $gia = tourprice::where('tour_id', $id)->get();
+        foreach($gia as $item)
+        {
+            if($start>=$item->gia_tungay && $start<=$item->gia_denngay)
+            {
+                echo "<option value='". $item->gia_id ."'>". $item->gia_sotien ."</option>";
+            }
+        }
     }
 }
