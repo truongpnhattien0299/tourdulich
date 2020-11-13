@@ -16,6 +16,23 @@
         <div class="card-body">
           <h4 class="card-title">List</h4>
           <p class="card-description"> <a href="/tourprice/addprc"> Create new </a> </p>
+          <div class="form-group row">
+            <div class="col-md-2 btn" >Tour</div>
+            <div class="col-md-4">
+            <select class="form-control" id="listtour" name="tour">
+                <option selected >-None-</option>
+                @foreach ($tour as $item)
+                    <option id="tour_{{$item->tour_id}}" value="{{$item->tour_id}}">{{$item->tour_ten}}</option>
+                @endforeach
+            </select>
+            </div>
+            <div class="col-md-2">
+                <input type="button" class="btn btn-gradient-success mr-2" id="btn-search" value="Search"/>
+            </div>
+            <div class="col-md-2">
+                <input type="button" class="btn btn-gradient-warning mr-2" id="btn-newprice" value="New Price"/>
+            </div>
+          </div>
           <table class="table table-striped">
             @if (session('notice'))
                 <div class="alert alert-danger">{{ session('notice') }}</div>
@@ -24,33 +41,16 @@
                 <tr>
                   <th> id </th>
                   <th> Price </th>
-                  <th> Tour </th>
                   <th> Day Start </th>
                   <th> Day End </th>
                 </tr>
               </thead>
-              <tbody>
-                @foreach ($tourprice as $item)
-                <tr>
-                  <td> {{$item->gia_id}} </td>
-                  <td> {{$item->gia_sotien}} </td>
-                  <td> {{$item->tour->tour_ten}} </td>
-                  <td> {{$item->gia_tungay}} </td>
-                  <td> {{$item->gia_denngay}} </td>
-                  <td>
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" style="padding: 10%">Select</button>
-                      <div class="dropdown-menu" style="min-width: 10px">
-                        <a href="editprc&id={{$item->gia_id}}" class="dropdown-item">Edit</a>
-                        <a onclick="del()" id="del" class="dropdown-item" style="cursor: pointer">Delete</a>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
+              <tbody id="table">
 
-                @endforeach
-              @endif
+
+
             </tbody>
+            @endif
           </table>
         </div>
       </div>
@@ -61,11 +61,27 @@
 @if (!session('notice'))
   @section('script')
   <script>
-    function del()
+        $(document).ready(function(){
+            $("#btn-search").click(function(){
+                var id = $('#listtour').val();
+                $.get("search&id="+id, function(data){
+                    $("#table").html(data);
+                });
+            });
+            $("#btn-newprice").click(function(){
+                var id = $('#listtour').val();
+                if(id!="-None-"){
+                    location.replace("price&id="+id);
+                }
+            });
+        });
+    function del(id)
     {
       var a = confirm("Are you sure you want to DELETE this Tour Price");
-      if(a)
-        location.replace("delete&id={{$item->gia_id}}");
+      if(a){
+        location.replace("delete&id="+id);
+      }
+
     }
   </script>
   @endsection

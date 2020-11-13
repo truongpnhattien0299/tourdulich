@@ -54,6 +54,8 @@ Route::group(['prefix' => 'tourprice'], function () {
     Route::get('editprc&id={id}', 'tourpriceController@getEdittourprice');
     Route::post('editprc&id={id}', 'tourpriceController@postEdittourprice');
     Route::get('delete&id={id}', 'tourpriceController@deletetourprice');
+    Route::get('search&id={id}', 'tourpriceController@searchTourPrice');
+    Route::get('price&id={id}', 'tourpriceController@priceTourPrice');
 });
 
 Route::group(['prefix' => 'category'], function () {

@@ -12,12 +12,13 @@ class tourpriceController extends Controller
     public function gettourprice()
     {
         $tourprice = tourprice::all();
+        $tour = tour::all();
         if($tourprice->first()==null)
         {
             session()->put('notice','Haven\'t any row');
             return view('tourprice.list');
         }
-        return view('tourprice.list', ['tourprice'=>$tourprice]);
+        return view('tourprice.list', ['tourprice'=>$tourprice,'tour'=>$tour]);
     }
 
     public function getAddtourprice()
@@ -68,5 +69,38 @@ class tourpriceController extends Controller
         $tourprice = tourprice::find($id);
         $tourprice->delete();
         return redirect('tourprice/listprc');
+    }
+    public function searchTourPrice($id)
+    {
+        $tourprice = tourprice::where('tour_id', $id)->distinct()->get();
+        $text="";
+        if(count($tourprice)==0){
+            $text="<tr><td colspan='5' align=center>Empty</td></tr>";
+        }else{
+            foreach($tourprice as $item)
+            {
+                $text.='<tr>'.
+                    '<td>'.$item->gia_id.'</td>'.
+                    '<td>'.$item->gia_sotien.'</td>'.
+                    '<td>'.$item->gia_tungay.'</td>'.
+                    '<td>'.$item->gia_denngay.'</td>'.
+                    '<td>'.
+                        '<div class="btn-group">'.
+                        '<button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" style="padding: 10%">Select</button>'.
+                        '<div class="dropdown-menu" style="min-width: 10px">'.
+                            '<a href="editprc&id='.$item->gia_id.'" id="'.$item->gia_id.'" class="dropdown-item">Edit</a>'.
+                            '<a onclick="del('.$item->gia_id.')" id="del"  class="dropdown-item" style="cursor: pointer">Delete</a>'.
+                        '</div>'.
+                        '</div>'.
+                    '</td>'.
+                ' </tr>';
+            }
+        }
+        return $text;
+    }
+    public function priceTourPrice($id)
+    {
+        $tour = tour::find($id);
+        return view('tourprice.addprice',['tour' => $tour]);
     }
 }
