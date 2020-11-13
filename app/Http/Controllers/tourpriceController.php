@@ -81,7 +81,7 @@ class tourpriceController extends Controller
             {
                 $text.='<tr>'.
                     '<td>'.$item->gia_id.'</td>'.
-                    '<td>'.$item->gia_sotien.'</td>'.
+                    '<td>'.number_format($item->gia_sotien).' VNĐ</td>'.
                     '<td>'.$item->gia_tungay.'</td>'.
                     '<td>'.$item->gia_denngay.'</td>'.
                     '<td>'.
