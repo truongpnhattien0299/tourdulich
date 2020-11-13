@@ -34,8 +34,64 @@
                 <tr>
                   <td> {{$item->nguoidi_id}} </td>
                   <td> {{$item->doan_id}} </td>
-                  <td> {{$item->nguoidi_dsnhanvien}} </td>
-                  <td> {{$item->nguoidi_dskhach}} </td>
+                  <td>
+                    <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" id="btn-down" data-toggle="modal" data-target="#myModal2">
+                        <i class="mdi mdi mdi-file-document"></i>
+                    </button>
+                    <!-- The Modal -->
+                    <div class="modal" id="myModal2">
+                        <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">List Customer</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                            <div class="form-group">
+                                    <select class="form-control" size='10'>
+                                        <option>{{$item->nguoidi_dskhach}}</option>
+                                    </select>
+                                  </div>
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" id="btn-down" data-toggle="modal" data-target="#myModal2">
+                            <i class="mdi mdi mdi-file-document"></i>
+                        </button>
+                        <!-- The Modal -->
+                        <div class="modal" id="myModal2">
+                            <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                <h4 class="modal-title">List Employee</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                <div class="form-group">
+                                        <select class="form-control" size='10' name="listemp">
+                                            <option selected>{{$item->nguoidi_dsnhanvien}}</option>
+                                        </select>
+                                      </div>
+                                </div>
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                        </td>
                   <td>
                     <div class="btn-group">
                       <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" style="padding: 10%">Select</button>

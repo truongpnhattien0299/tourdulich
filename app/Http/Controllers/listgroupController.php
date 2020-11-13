@@ -18,6 +18,17 @@ class listgroupController extends Controller
             session()->put('notice','Haven\'t any row');
             return view('listgroup.list');
         }
+        $text="";
+        foreach($listgroup as $item){
+            $text.=$item->nguoidi_dsnhanvien." ";
+        }
+        dd($text);
+        $arr = explode(" ",$text);
+        dd($arr);
+        for($i=0;$i<count($arr)-1;$i++){
+            $arr2 = explode(",",$arr[$i]);
+        }
+        dd($arr2);
         return view('listgroup.list', ['listgroup'=>$listgroup]);
     }
 
