@@ -7,10 +7,12 @@ use Illuminate\Database\QueryException;
 use Illuminate\Database\ModelNotFoundException;
 
 use App\Models\Tour;
+use App\Models\tourprice;
 use App\Models\tourdetail;
 use App\Models\listcity;
 use App\Models\Loaitour;
 use App\Models\location;
+use Whoops\Exception\Formatter;
 
 class TourController extends Controller
 {
@@ -102,7 +104,7 @@ class TourController extends Controller
                     $newtourdetail->save();
                 }
             }
-            
+
         }catch(QueryException $e){
             return back()->withError('Can\'t Edit the Tour. Because form incomplete')->withInput();
         }
@@ -123,5 +125,15 @@ class TourController extends Controller
         {
             echo "<option id='city_".$item->id."' value='". $item->id ."'>". $item->dd_ten ."</option>";
         }
+    }
+    public function popTour($id)
+    {
+        $tourprice = tourprice::where('tour_id', $id)->get();
+        $text="";
+        foreach($tourprice as $item)
+        {
+            $text.='<option>'.number_format($item->gia_sotien,).' VNĐ ,  '.$item->gia_tungay.':'.$item->gia_denngay.'</option>';
+        }
+        return $text;
     }
 }

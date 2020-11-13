@@ -74,7 +74,7 @@ class groupController extends Controller
     }
     public function pricegroup($id)
     {
-        $tourprice = tourprice::where('tp_id', $id)->get();;
+        $tourprice = tourprice::where('tour_id', $id)->get();;
         return view('group.add',['tourprice'=>$tourprice]);
     }
 }

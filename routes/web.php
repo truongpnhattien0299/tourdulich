@@ -76,6 +76,7 @@ Route::group(['prefix' => 'tour'], function () {
     Route::post('edit&id={id}', 'TourController@postEditTour');
     Route::get('delete&id={id}', 'TourController@deleteTour');
     Route::get('ajax&id={id}', 'TourController@ajaxTour');
+    Route::get('popup&id={id}', 'TourController@popTour');
 });
 
 Route::group(['prefix' => 'typecost'], function () {

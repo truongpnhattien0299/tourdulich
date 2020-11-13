@@ -1,6 +1,6 @@
 @extends('layout._Layout')
 @section('content')
-    
+
 <div class="page-header">
     <h3 class="page-title"> Tour </h3>
     <nav aria-label="breadcrumb">
@@ -54,17 +54,42 @@
                           @endphp
                         @endforeach
                       </td>
-                      <td>  
+                      <td>
                         <div class="btn-group">
                           <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" style="padding: 10%">Select</button>
                           <div class="dropdown-menu" style="min-width: 10px">
                             <a href="edit&id={{$item->tour_id}}" class="dropdown-item">Edit</a>
-                            <a href="price&id={{$item->tour_id}}" class="dropdown-item">Price</a>
+                            <a id="pop-price" onclick="price({{$item->tour_id}})" class="dropdown-item" data-toggle="modal" data-target="#myModal{{$item->tour_id}}">Price</a>
                             <a onclick="del()" id="del" class="dropdown-item" style="cursor: pointer">Delete</a>
                           </div>
                         </div>
                       </td>
                   </tr>
+                <div id="popup">
+                    <div class="modal" id="myModal{{$item->tour_id}}">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">Price {{$item->tour_ten}} </h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                            <div class="form-group">
+                                    <select class="form-control" size='10' id="listprice" multiple>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  </div>
                   @endforeach
               </tbody>
             @endif
@@ -79,6 +104,11 @@
 @if (!session('notice'))
   @section('script')
   <script>
+    function price(id){
+        $.get("popup&id="+id, function(data){
+           $('#listprice').html(data);
+        });
+    }
     function del()
     {
       var a = confirm("Are you sure you want to DELETE this category");
