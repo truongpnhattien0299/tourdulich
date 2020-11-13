@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\tour;
+use App\Models\tourprice;
 use App\Models\group;
 use Illuminate\Database\QueryException;
 
@@ -70,5 +71,10 @@ class groupController extends Controller
         $group = group::find($id);
         $group->delete();
         return redirect('Group/listgrp');
+    }
+    public function pricegroup($id)
+    {
+        $tourprice = tourprice::where('tp_id', $id)->get();;
+        return view('group.add',['tourprice'=>$tourprice]);
     }
 }

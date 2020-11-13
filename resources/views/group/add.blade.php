@@ -32,6 +32,12 @@
                         @endforeach
                     </select>
                   </div>
+                  <div class="form-group">
+                    <label for="tourprice">Tour Price</label>
+                    <select class="form-control" id="tourprice" name="tour">
+                        <option selected>-None-</option>
+                    </select>
+                  </div>
                 <div class="form-group">
                     <label for="start">Day Start</label>
                     <input type="date" class="form-control" id="start" name="start" value="{{ old('start') }}" placeholder="Day Start">
@@ -50,4 +56,14 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $("#listtour").change(function(){
+            var id = $('#listtour').val();
+            $.get("price&id="+id, function(data){
+                $("#tourprice").html(data);
+            });
+        });
+    });
+</script>
 @endsection

@@ -35,6 +35,7 @@ Route::group(['prefix' => 'Group'], function () {
     Route::get('editgrp&id={id}', 'groupController@getEditGroup');
     Route::post('editgrp&id={id}', 'groupController@postEditGroup');
     Route::get('delete&id={id}', 'groupController@deleteGroup');
+    Route::get('price&id={id}', 'groupController@priceGroup');
 });
 
 

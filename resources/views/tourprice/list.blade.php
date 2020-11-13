@@ -47,8 +47,6 @@
               </thead>
               <tbody id="table">
 
-
-
             </tbody>
             @endif
           </table>
@@ -81,7 +79,6 @@
       if(a){
         location.replace("delete&id="+id);
       }
-
     }
   </script>
   @endsection
