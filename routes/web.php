@@ -89,10 +89,9 @@ Route::group(['prefix' => 'typecost'], function () {
 });
 
 Route::group(['prefix' => 'cost'], function () {
-    Route::get('listcp', 'ChiphiController@getCp');
     Route::get('addcp&id={id}', 'ChiphiController@getAddCp');
     Route::post('addcp&id={id}', 'ChiphiController@postAddCp');
-    Route::get('edit&id={id}', 'ChiphiController@getEditCp');
+    // Route::get('edit&id={id}', 'ChiphiController@getEditCp');
     Route::post('edit&id={id}', 'ChiphiController@postEditCp');
-    Route::get('delete&id={id}', 'ChiphiController@deleteCp');
+    // Route::get('delete&id={id}', 'ChiphiController@deleteCp');
 });

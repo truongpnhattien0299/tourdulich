@@ -21,6 +21,7 @@
             
             <form class="forms-sample" action="addcp&id={{$id}}" method="POST">
                 @csrf
+                <input type="hidden" name="id" id="id">
                 <div class="form-group">
                     <label for="name">Type Cost</label>
                     <select class="form-control" name="typecost" id="typecost">
@@ -46,6 +47,7 @@
                     <input type="text" class="form-control" id="price" name="price" value="{{ old('price') }}" placeholder="Price">
                 </div>
                 <input type="submit" class="btn btn-gradient-primary mr-2" value="Submit"/>
+                <button type="button" id="update" class="btn btn-light">Update</button>
                 <button type="reset" class="btn btn-light">Reset</button>
             </form>
         </div>
@@ -70,8 +72,8 @@
           <tbody>
               @if ($chiphi != null)
                 @for ($i = 0; $i < count($detail); $i++)
-                <tr>
-                    <td>{{ $i+1 }}</td>
+                <tr id="idcost_{{$i}}" onclick="getdata({{$i}}, '{{$detail[$i]->code }}', '{{ $detail[$i]->typecost }}', '{{ $detail[$i]->content }}', '{{ $detail[$i]->price }}', '{{ $detail[$i]->date }}')">
+                    <td>{{ $i + 1 }}</td>
                     <td>{{ $detail[$i]->code }}</td>
                     <td>{{ $detail[$i]->typecost }}</td>
                     <td>{{ $detail[$i]->content }}</td>
@@ -86,4 +88,39 @@
     </div>
   </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+    function getdata(id, code, typecost, content, price, date)
+    {
+        $("#id").val(id);
+        $("#code").val(code);
+        $("#typecost").val(typecost);
+        $("#price").val(price);
+        $("#content").val(content);
+        $("#date").val(date);
+    }
+    $(document).ready(function(){
+        $("#update").click(function(){
+            $.ajax({
+                type: "post",
+                url: "edit&id={{$id}}",
+                data: {
+                    "_token" : '{{csrf_token()}}',
+                    "id" : $("#id").val(),
+                    "code" : $("#code").val(),
+                    "content" : $("#content").val(),
+                    "price" : $("#price").val(),
+                    "date" : $("#date").val(),
+                    "typecost" : $("#typecost").val(),
+                },
+                success:function(data)
+                {
+                    $("tbody").html(data);
+                }
+            });
+        })
+    });
+</script>
 @endsection
