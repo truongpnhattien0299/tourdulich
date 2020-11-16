@@ -17,6 +17,16 @@ class group extends Model
         return $this->belongsTo('App\Models\Tour', 'tour_id', 'tour_id');
     }
 
+    public function chiphi()
+    {
+        return $this->belongsTo('App\Models\Chiphi', 'doan_id', 'doan_id');
+    }
+
+    public function price()
+    {
+        return $this->belongsTo('App\Models\tourprice', 'gia_id', 'gia_id');
+    }
+
     public function visitor()
     {
         return $this->hasMany('App\Models\visitor', 'doan_id', 'doan_id');
