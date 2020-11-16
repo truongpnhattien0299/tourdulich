@@ -35,13 +35,13 @@ class ChiphiController extends Controller
                 $chiphi = new Chiphi;
                 $chiphi->doan_id = $id;
                 $chiphi->chiphi_total = $request->price;
-                $tmp=1;
             }
             else
             {
                 $arr = json_decode($chiphi->chiphi_chitiet);
                 $dem = count($arr) - 1;
-                $tmp = $arr[$dem]->id + 1;
+                if($dem != -1)
+                    $tmp = $arr[$dem]->id + 1;
                 $chiphi->chiphi_total += $request->price;
             }
             
@@ -72,19 +72,60 @@ class ChiphiController extends Controller
         $arr[$request->id]->price = $request->price;
         $arr[$request->id]->date = $request->date;
         $arr[$request->id]->content = $request->content;
-        $txt = "";
+        $txt = ""; $gia=0;
 
         for($i = 0; $i<count($arr); $i++)
         {
-            $txt .= '<tr id="idcost_'.$i.'" onclick="getdata('.$i.','.$arr[$i]->code.',\''.$arr[$i]->typecost.'\',\''.$arr[$i]->content.'\',\''.$arr[$i]->price.'\',\''.$arr[$i]->date.'\')"> 
+            $gia += $arr[$i]->price;
+            $txt .= '<tr onclick="getdata('.$i.','.$arr[$i]->code.',\''.$arr[$i]->typecost.'\',\''.$arr[$i]->content.'\',\''.$arr[$i]->price.'\',\''.$arr[$i]->date.'\')"> 
             <td>'. ($i + 1) .'</td>
             <td>'. $arr[$i]->code .'</td>
             <td>'. $arr[$i]->typecost .'</td>
             <td>'. $arr[$i]->content .'</td>
             <td>'. $arr[$i]->price .'</td>
-        </tr>';
+            </tr>';
         }
-        
+        $txt .= '<tr>
+            <td colspan="4" style="text-align: right"><b>Total</b></td>
+            <td colspan="2" style="text-align: left"><b>'.$chiphi->chiphi_total.'</b></td>
+        </tr>';
+        $chiphi->chiphi_total = $gia;
+        $json = json_encode($arr);
+        $chiphi->chiphi_chitiet = $json;
+        $chiphi->save();
+        return $txt;
+    }
+
+    public function deleteCp(Request $request, $id)
+    {
+        $chiphi = Chiphi::where('doan_id', $id)->first();
+        $arr = json_decode($chiphi->chiphi_chitiet);
+        $gia=0;
+        for($i=0; $i<count($arr); $i++)
+        {
+            if($arr[$i]->id == $request->id)
+            {
+                $gia = $arr[$i]->price;
+                array_splice($arr, $i, 1);
+            }
+        }
+        $txt = "";
+        $chiphi->chiphi_total -= $gia;
+        for($i = 0; $i<count($arr); $i++)
+        {
+            $txt .= '<tr onclick="getdata('.$i.','.$arr[$i]->code.',\''.$arr[$i]->typecost.'\',\''.$arr[$i]->content.'\',\''.$arr[$i]->price.'\',\''.$arr[$i]->date.'\')"> 
+                <td>'. ($i + 1) .'</td>
+                <td>'. $arr[$i]->code .'</td>
+                <td>'. $arr[$i]->typecost .'</td>
+                <td>'. $arr[$i]->content .'</td>
+                <td>'. $arr[$i]->price .'</td>
+                <td><button onclick="del('. $arr[$i]->id .')" type="button" class="btn btn-inverse-danger btn-fw" style="padding: inherit; min-width: auto"><i class="mdi mdi-close-circle"></i></button></td>
+            </tr>';
+        }
+        $txt .= '<tr>
+            <td colspan="4" style="text-align: right"><b>Total</b></td>
+            <td colspan="2" style="text-align: left"><b>'.$chiphi->chiphi_total.'</b></td>
+        </tr>';
         $json = json_encode($arr);
         $chiphi->chiphi_chitiet = $json;
         $chiphi->save();

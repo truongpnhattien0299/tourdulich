@@ -1,7 +1,7 @@
 @extends('layout._Layout')
 @section('content')
 <div class="row">
-<div class="col-6 grid-margin stretch-card">
+<div class="col-5 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Create new a cost</h4>
@@ -48,13 +48,13 @@
                 </div>
                 <input type="submit" class="btn btn-gradient-primary mr-2" value="Submit"/>
                 <button type="button" id="update" class="btn btn-light">Update</button>
-                <button type="reset" class="btn btn-light">Reset</button>
+                <button type="reset" id="reset" class="btn btn-light">Reset</button>
             </form>
         </div>
     </div>
 </div>
 
-<div class="col-6 grid-margin stretch-card">
+<div class="col-7 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Cost Details</h4>
@@ -62,26 +62,31 @@
         <table class="table table-hover">
           <thead>
             <tr>
-              <th>#</th>
-              <th>Code</th>
-              <th>Type Cost</th>
-              <th>Name</th>
-              <th>Price</th>
+                <th>#</th>
+                <th>Code</th>
+                <th>Type Cost</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Delete</th>
             </tr>
           </thead>
           <tbody>
-              @if ($chiphi != null)
+            @if ($chiphi != null)
                 @for ($i = 0; $i < count($detail); $i++)
-                <tr id="idcost_{{$i}}" onclick="getdata({{$i}}, '{{$detail[$i]->code }}', '{{ $detail[$i]->typecost }}', '{{ $detail[$i]->content }}', '{{ $detail[$i]->price }}', '{{ $detail[$i]->date }}')">
+                <tr onclick="getdata({{$i}}, '{{$detail[$i]->code }}', '{{ $detail[$i]->typecost }}', '{{ $detail[$i]->content }}', '{{ $detail[$i]->price }}', '{{ $detail[$i]->date }}')">
                     <td>{{ $i + 1 }}</td>
                     <td>{{ $detail[$i]->code }}</td>
                     <td>{{ $detail[$i]->typecost }}</td>
                     <td>{{ $detail[$i]->content }}</td>
                     <td>{{ $detail[$i]->price }}</td>
+                    <td><button onclick="del({{$detail[$i]->id}})" type="button" class="btn btn-inverse-danger btn-fw" style="padding: inherit; min-width: auto"><i class="mdi mdi-close-circle"></i></button></td>
                 </tr>
                 @endfor
-              @endif
-            
+                <tr>
+                    <td colspan="4" style="text-align: right"><b>Total</b></td>
+                    <td colspan="2" style="text-align: left"><b>{{ $chiphi->chiphi_total }}</b></td>
+                </tr>
+            @endif
           </tbody>
         </table>
       </div>
@@ -101,26 +106,50 @@
         $("#content").val(content);
         $("#date").val(date);
     }
+    function del(id)
+    {
+        $.ajax({
+            type: "post",
+            url: "delete&id={{$id}}",
+            data: {
+                "_token" : '{{csrf_token()}}',
+                "id" : id
+            },
+            success:function(data)
+            {
+                $("tbody").html(data);
+                alert("Delete Successful!!!");
+            }
+        });
+    }
     $(document).ready(function(){
         $("#update").click(function(){
-            $.ajax({
-                type: "post",
-                url: "edit&id={{$id}}",
-                data: {
-                    "_token" : '{{csrf_token()}}',
-                    "id" : $("#id").val(),
-                    "code" : $("#code").val(),
-                    "content" : $("#content").val(),
-                    "price" : $("#price").val(),
-                    "date" : $("#date").val(),
-                    "typecost" : $("#typecost").val(),
-                },
-                success:function(data)
-                {
-                    $("tbody").html(data);
-                }
-            });
-        })
+            if($("#id").val()!="")
+                $.ajax({
+                    type: "post",
+                    url: "edit&id={{$id}}",
+                    data: {
+                        "_token" : '{{csrf_token()}}',
+                        "id" : $("#id").val(),
+                        "code" : $("#code").val(),
+                        "content" : $("#content").val(),
+                        "price" : $("#price").val(),
+                        "date" : $("#date").val(),
+                        "typecost" : $("#typecost").val(),
+                    },
+                    success:function(data)
+                    {
+                        $("tbody").html(data);
+                        alert("Update Successful!");
+                    }
+                });
+            else
+                alert("Cant Update data");
+        });
+
+        $("#reset").click(function(){
+            $("#id").val("");
+        });
     });
 </script>
 @endsection

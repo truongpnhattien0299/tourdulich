@@ -93,5 +93,5 @@ Route::group(['prefix' => 'cost'], function () {
     Route::post('addcp&id={id}', 'ChiphiController@postAddCp');
     // Route::get('edit&id={id}', 'ChiphiController@getEditCp');
     Route::post('edit&id={id}', 'ChiphiController@postEditCp');
-    // Route::get('delete&id={id}', 'ChiphiController@deleteCp');
+    Route::post('delete&id={id}', 'ChiphiController@deleteCp');
 });
