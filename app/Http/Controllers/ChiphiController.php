@@ -29,7 +29,7 @@ class ChiphiController extends Controller
         try{
             $chiphi = Chiphi::where('doan_id', $id)->first();
             $arr = []; $tmp=0;
-            
+
             if($chiphi==null)
             {
                 $chiphi = new Chiphi;
@@ -44,7 +44,7 @@ class ChiphiController extends Controller
                     $tmp = $arr[$dem]->id + 1;
                 $chiphi->chiphi_total += $request->price;
             }
-            
+
             $obj = (object) [];
             $obj->id = $tmp;
             $obj->price = $request->price;
@@ -77,7 +77,7 @@ class ChiphiController extends Controller
         for($i = 0; $i<count($arr); $i++)
         {
             $gia += $arr[$i]->price;
-            $txt .= '<tr onclick="getdata('.$i.','.$arr[$i]->code.',\''.$arr[$i]->typecost.'\',\''.$arr[$i]->content.'\',\''.$arr[$i]->price.'\',\''.$arr[$i]->date.'\')"> 
+            $txt .= '<tr onclick="getdata('.$i.','.$arr[$i]->code.',\''.$arr[$i]->typecost.'\',\''.$arr[$i]->content.'\',\''.$arr[$i]->price.'\',\''.$arr[$i]->date.'\')">
             <td>'. ($i + 1) .'</td>
             <td>'. $arr[$i]->code .'</td>
             <td>'. $arr[$i]->typecost .'</td>
@@ -113,7 +113,7 @@ class ChiphiController extends Controller
         $chiphi->chiphi_total -= $gia;
         for($i = 0; $i<count($arr); $i++)
         {
-            $txt .= '<tr onclick="getdata('.$i.','.$arr[$i]->code.',\''.$arr[$i]->typecost.'\',\''.$arr[$i]->content.'\',\''.$arr[$i]->price.'\',\''.$arr[$i]->date.'\')"> 
+            $txt .= '<tr onclick="getdata('.$i.','.$arr[$i]->code.',\''.$arr[$i]->typecost.'\',\''.$arr[$i]->content.'\',\''.$arr[$i]->price.'\',\''.$arr[$i]->date.'\')">
                 <td>'. ($i + 1) .'</td>
                 <td>'. $arr[$i]->code .'</td>
                 <td>'. $arr[$i]->typecost .'</td>

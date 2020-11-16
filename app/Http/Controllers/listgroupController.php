@@ -35,17 +35,30 @@ class listgroupController extends Controller
             $listgroup = new listgroup;
             $listgroup->doan_id = $request->group;
             $arr= $request->ListCustomer;
-            $test="";
+            $arr1=[];
             for($i = 0; $i<count($arr) ;$i++){
-                $test.=$arr[$i].",";
+                $obj = (object) [];
+                $group = group::find($request->group);
+                $obj->id=$arr[$i];
+                $obj->ngaydi=$group->doan_ngaydi;
+                $obj->ngayve=$group->doan_ngayve;
+                array_push($arr1, $obj);
             }
-            $listgroup->nguoidi_dskhach = $test;
+            $json = json_encode($arr1);
+            $listgroup->nguoidi_dskhach = $json;
+
             $arr2= $request->Listemployee;
-            $test2="";
+            $arr3=[];
             for($i = 0; $i<count($arr2) ;$i++){
-                $test2.=$arr2[$i].",";
+                $obj = (object) [];
+                $group = group::find($request->group);
+                $obj->id=$arr2[$i];
+                $obj->ngaydi=$group->doan_ngaydi;
+                $obj->ngayve=$group->doan_ngayve;
+                array_push($arr3, $obj);
             }
-            $listgroup->nguoidi_dsnhanvien = $test2;
+            $json1 = json_encode($arr3);
+            $listgroup->nguoidi_dsnhanvien = $json1;
             $listgroup->save();
         }catch(QueryException $e){
             return back()->withError('Can\'t create new listgroup. Because form incomplete')->withInput();
@@ -83,7 +96,11 @@ class listgroupController extends Controller
     }
     public function ajaxListemp($id)
     {
-        $arr= str_split($id);
+        $arr=[];
+        $json = json_decode($id);
+        for($i=0; $i < count($json) ;$i++){
+                $arr[$i]=$json[$i]->id;
+        }
         $text="";
         for($i = 0;$i < count($arr);$i++){
             $employee = employee::find($arr[$i]);
@@ -93,11 +110,15 @@ class listgroupController extends Controller
     }
     public function ajaxListcus($id)
     {
-        $arr= str_split($id);
+        $arr=[];
+        $json = json_decode($id);
+        for($i=0; $i < count($json) ;$i++){
+                $arr[$i]=$json[$i]->id;
+        }
         $text="";
         for($i = 0;$i < count($arr);$i++){
-            $customer = Khachang::find($arr[$i]);
-            $text.="<option>".$customer->kh_ten."</option>";
+            $khachhang = Khachang::find($arr[$i]);
+            $text.="<option>".$khachhang->kh_ten."</option>";
         }
         return $text;
     }
