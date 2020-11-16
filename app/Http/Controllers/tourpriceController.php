@@ -29,15 +29,19 @@ class tourpriceController extends Controller
 
     public function postAddtourprice(Request $request)
     {
-        try{
-            $tourprice = new tourprice;
-            $tourprice->gia_sotien = $request->price;
-            $tourprice->tour_id = $request->tour;
-            $tourprice->gia_tungay = $request->start;
-            $tourprice->gia_denngay = $request->end;
-            $tourprice->save();
-        }catch(QueryException $e){
-            return back()->withError('Can\'t create new tour price. Because form incomplete')->withInput();
+        if($request->start > $request->end){
+            return back()->withError('Can\'t create new tour price. Error day')->withInput();
+        }else{
+            try{
+                $tourprice = new tourprice;
+                $tourprice->gia_sotien = $request->price;
+                $tourprice->tour_id = $request->tour;
+                $tourprice->gia_tungay = $request->start;
+                $tourprice->gia_denngay = $request->end;
+                $tourprice->save();
+            }catch(QueryException $e){
+                return back()->withError('Can\'t create new tour price. Because form incomplete')->withInput();
+            }
         }
         return redirect('tourprice/listprc');
     }

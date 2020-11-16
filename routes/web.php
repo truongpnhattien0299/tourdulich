@@ -38,6 +38,14 @@ Route::group(['prefix' => 'Group'], function () {
     Route::post('editgrp&id={id}', 'groupController@postEditGroup');
     Route::get('delete&id={id}', 'groupController@deleteGroup');
     Route::get('price&id={id}&start={start}', 'groupController@priceGroup');
+    //
+    Route::group(['prefix' => 'cost'], function () {
+        Route::get('addcp&id={id}', 'ChiphiController@getAddCp');
+        Route::post('addcp&id={id}', 'ChiphiController@postAddCp');
+        // Route::get('edit&id={id}', 'ChiphiController@getEditCp');
+        Route::post('edit&id={id}', 'ChiphiController@postEditCp');
+        // Route::get('delete&id={id}', 'ChiphiController@deleteCp');
+    });
 });
 
 
@@ -88,12 +96,4 @@ Route::group(['prefix' => 'typecost'], function () {
     Route::get('edit&id={id}', 'LoaichiphiController@getEditTc');
     Route::post('edit&id={id}', 'LoaichiphiController@postEditTc');
     Route::get('delete&id={id}', 'LoaichiphiController@deleteTc');
-});
-
-Route::group(['prefix' => 'cost'], function () {
-    Route::get('addcp&id={id}', 'ChiphiController@getAddCp');
-    Route::post('addcp&id={id}', 'ChiphiController@postAddCp');
-    // Route::get('edit&id={id}', 'ChiphiController@getEditCp');
-    Route::post('edit&id={id}', 'ChiphiController@postEditCp');
-    // Route::get('delete&id={id}', 'ChiphiController@deleteCp');
 });

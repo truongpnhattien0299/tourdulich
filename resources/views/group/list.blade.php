@@ -45,6 +45,7 @@
                       <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" style="padding: 10%">Select</button>
                       <div class="dropdown-menu" style="min-width: 10px">
                         <a href="editgrp&id={{$item->doan_id}}" class="dropdown-item">Edit</a>
+                        <a class="dropdown-item" onclick="get({{$item->doan_id}})" >Details</a>
                         <a onclick="del()" id="del" class="dropdown-item" style="cursor: pointer">Delete</a>
                       </div>
                     </div>
@@ -64,6 +65,9 @@
 @if (!session('notice'))
   @section('script')
   <script>
+    function get(id){
+        window.location="cost/addcp&id="+id;
+    }
     function del()
     {
       var a = confirm("Are you sure you want to DELETE this Group");

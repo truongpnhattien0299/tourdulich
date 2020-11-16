@@ -14,7 +14,7 @@ class listgroup extends Model
 
     public function group()
     {
-        return $this->hasMany('App\Models\visitor', 'doan_id', 'doan_id');
+        return $this->belongsTo('App\Models\group', 'doan_id', 'doan_id');
     }
 
 }

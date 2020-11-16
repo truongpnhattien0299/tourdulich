@@ -46,4 +46,21 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $("#listtour").change(function(){
+            $("#start").val(null);
+            $("#end").val(null);
+        });
+        $("#end").change(function(){
+                var id = $('#listtour').val();
+                var start = $('#start').val();
+                var end = $('#end').val();
+                $.get("priceend&id="+id+"&start="+start+"&end="+end, function(data){
+
+                });
+        });
+    });
+    </script>
 @endsection
+
