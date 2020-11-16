@@ -39,13 +39,13 @@ class listgroupController extends Controller
             for($i = 0; $i<count($arr) ;$i++){
                 $test.=$arr[$i].",";
             }
-            $listgroup->nguoidi_dsnhanvien = $test;
+            $listgroup->nguoidi_dskhach = $test;
             $arr2= $request->Listemployee;
             $test2="";
             for($i = 0; $i<count($arr2) ;$i++){
                 $test2.=$arr2[$i].",";
             }
-            $listgroup->nguoidi_dskhach = $test2;
+            $listgroup->nguoidi_dsnhanvien = $test2;
             $listgroup->save();
         }catch(QueryException $e){
             return back()->withError('Can\'t create new listgroup. Because form incomplete')->withInput();
@@ -80,5 +80,25 @@ class listgroupController extends Controller
         $listgroup = listgroup::find($id);
         $listgroup->delete();
         return redirect('Listgroup/listlgrp');
+    }
+    public function ajaxListemp($id)
+    {
+        $arr= str_split($id);
+        $text="";
+        for($i = 0;$i < count($arr);$i++){
+            $employee = employee::find($arr[$i]);
+            $text.="<option>".$employee->nv_ten."--".$employee->nv_nhiemvu."</option>";
+        }
+        return $text;
+    }
+    public function ajaxListcus($id)
+    {
+        $arr= str_split($id);
+        $text="";
+        for($i = 0;$i < count($arr);$i++){
+            $customer = Khachang::find($arr[$i]);
+            $text.="<option>".$customer->kh_ten."</option>";
+        }
+        return $text;
     }
 }
