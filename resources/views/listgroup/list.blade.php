@@ -35,11 +35,11 @@
                   <td> {{$item->nguoidi_id}} </td>
                   <td> {{$item->doan_id}} </td>
                   <td>
-                    <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" id="btn-down" data-toggle="modal" data-target="#myModal2">
+                    <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" id="btn-down" onclick="getcus('{{$item->nguoidi_dskhach}}',{{$item->nguoidi_id}})" data-toggle="modal" data-target="#myModal{{$item->nguoidi_id}}">
                         <i class="mdi mdi mdi-file-document"></i>
                     </button>
                     <!-- The Modal -->
-                    <div class="modal" id="myModal2">
+                    <div class="modal" id="myModal{{$item->nguoidi_id}}">
                         <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <!-- Modal Header -->
@@ -50,8 +50,8 @@
                             <!-- Modal body -->
                             <div class="modal-body">
                             <div class="form-group">
-                                    <select class="form-control" size='10'>
-                                        <option>{{$item->nguoidi_dskhach}}</option>
+                                    <select class="form-control" id="listcus{{$item->nguoidi_id}}" size='10'>
+
                                     </select>
                                   </div>
                             </div>
@@ -64,11 +64,11 @@
                         </div>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" id="btn-down" data-toggle="modal" data-target="#myModal2">
+                        <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" onclick="getemp('{{$item->nguoidi_dsnhanvien}}',{{$item->nguoidi_id}})" data-toggle="modal" data-target="#myModal2{{$item->nguoidi_id}}" >
                             <i class="mdi mdi mdi-file-document"></i>
                         </button>
                         <!-- The Modal -->
-                        <div class="modal" id="myModal2">
+                        <div class="modal" id="myModal2{{$item->nguoidi_id}}">
                             <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <!-- Modal Header -->
@@ -79,8 +79,8 @@
                                 <!-- Modal body -->
                                 <div class="modal-body">
                                 <div class="form-group">
-                                        <select class="form-control" size='10' name="listemp">
-                                            <option selected>{{$item->nguoidi_dsnhanvien}}</option>
+                                        <select class="form-control" size='10' id="listemp{{$item->nguoidi_id}}" name="listemp">
+
                                         </select>
                                       </div>
                                 </div>
@@ -116,6 +116,28 @@
 @if (!session('notice'))
   @section('script')
   <script>
+    function getemp(list,id)
+    {
+        var arr= (list+"").split(",");
+        var text="";
+        for(var i=0;i<arr.length-1;i++){
+            text+=arr[i];
+        }
+        $.get("ajaxemp&id="+text, function(data){
+            $("#listemp"+id).html(data);
+        });
+    }
+    function getcus(list,id)
+    {
+        var arr= (list+"").split(",");
+        var text="";
+        for(var i=0;i<arr.length-1;i++){
+            text+=arr[i];
+        }
+        $.get("ajaxcus&id="+text, function(data){
+            $("#listcus"+id).html(data);
+        });
+    }
     function del()
     {
       var a = confirm("Are you sure you want to DELETE this List Group");
