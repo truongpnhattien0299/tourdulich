@@ -35,7 +35,7 @@
                   <td> {{$item->nguoidi_id}} </td>
                   <td> {{$item->group->doan_name}} </td>
                   <td>
-                    <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" id="btn-down" onclick="getcus('{{$item->nguoidi_dskhach}}',{{$item->nguoidi_id}})" data-toggle="modal" data-target="#myModal{{$item->nguoidi_id}}">
+                  <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" id="btn-down" onclick="getcus('{{$item->nguoidi_dskhach}}',{{$item->nguoidi_id}})" data-toggle="modal" data-target="#myModal{{$item->nguoidi_id}}">
                         <i class="mdi mdi mdi-file-document"></i>
                     </button>
                     <!-- The Modal -->
@@ -118,23 +118,13 @@
   <script>
     function getemp(list,id)
     {
-        var arr= (list+"").split(",");
-        var text="";
-        for(var i=0;i<arr.length-1;i++){
-            text+=arr[i];
-        }
-        $.get("ajaxemp&id="+text, function(data){
+        $.get("ajaxemp&id="+list, function(data){
             $("#listemp"+id).html(data);
         });
     }
     function getcus(list,id)
     {
-        var arr= (list+"").split(",");
-        var text="";
-        for(var i=0;i<arr.length-1;i++){
-            text+=arr[i];
-        }
-        $.get("ajaxcus&id="+text, function(data){
+        $.get("ajaxcus&id="+list, function(data){
             $("#listcus"+id).html(data);
         });
     }
