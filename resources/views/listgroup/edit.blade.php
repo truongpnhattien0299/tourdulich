@@ -47,9 +47,9 @@
                                                 <div class="modal-body">
                                                 <div class="form-group">
                                                         <select class="form-control" size='10' id="listcus"  name="customer" multiple>
-                                                            @foreach ($customer as $item)
-                                                                <option id="cus_{{$item->kh_id}}" value="{{$item->kh_id}}">{{$item->kh_ten}}</option>
-                                                            @endforeach
+                                                            @foreach ($listcustomer as $item)
+                                                            <option id="cus_{{$item->kh_id}}" value="{{$item->kh_id}}">{{$item->kh_ten}}</option>
+                                                        @endforeach
                                                         </select>
                                                       </div>
                                                 </div>
@@ -70,7 +70,9 @@
                                 </div>
                                 <br>
                                 <select class="form-control" size="7" id="left" name="ListCustomer[]" multiple>
-
+                                    @for($i=0; $i <= count($customer);$i++)
+                                        <option selected id="cus_{{$customer['id'][$i]}}" value='{{ $customer['id'][$i] }}'>{{$customer['val'][$i]}}</option>
+                                     @endfor
                                 </select>
                             </div>
                         </div>
@@ -99,9 +101,9 @@
                                                 <div class="modal-body">
                                                 <div class="form-group">
                                                         <select class="form-control" size='10' id="listcus2"  name="employee" multiple>
-                                                            @foreach ($employee as $item)
-                                                        <option id="emp_{{$item->nv_id}}" value="{{$item->nv_id}}">{{$item->nv_ten}}-{{$item->nv_nhiemvu}}</option>
-                                                            @endforeach
+                                                            @foreach ($listemployee as $item)
+                                                            <option id="emp_{{$item->nv_id}}" value="{{$item->nv_id}}">{{$item->nv_ten}}-{{$item->nv_nhiemvu}}</option>
+                                                                @endforeach
                                                         </select>
                                                       </div>
                                                 </div>
@@ -122,6 +124,9 @@
                                 </div>
                                 <br>
                                 <select class="form-control" multiple size="7" id="right" name="Listemployee[]">
+                                    @for($i=0;$i<count($employee["id"]);$i++)
+                                        <option selected id="emp_{{$employee['id'][$i]}}" value="{{$employee['id'][$i]}}">{{$employee['val'][$i]}}</option>
+                                     @endfor
                                 </select>
                             </div>
                         </div>
@@ -135,13 +140,18 @@
 </div>
 <script>
       $(document).ready(function(){
-          $('#listgroup').change(function(){
-                var id = $('#listgroup').val();
-                $.get("list&id="+id, function(data){
-                    //$("#listcus"+id).html(data);
-                });
-          });
+
             var arr = [], opt = {};
+            if($('#left').val()!=null)
+            {
+                var id=$('#left').val();
+                var input=(id+"").split(",");
+                for(var i=0;i<input.length;i++){
+                    var cus_id="<option selected value='"+input[i]+"'>"+$('#cus_'+input[i]).html()+"</option>";
+                    opt = {id: input[i], val: cus_id};
+                    arr.push(opt);
+                }
+            }
             $("#addlist").click(function(){
                 if(arr.length==0)
                 {
@@ -233,6 +243,7 @@
                     for(let i=0; i<arr.length; i++)
                         s+=arr[i]["val"];
                 }else{
+
                     for(let i=0; i<arr.length; i++)
                     {
                         for(var j=0;j<input.length;j++){
@@ -248,6 +259,16 @@
                 $("#left").html(s);
             });
             var arr2 = [], opt2 = {};
+            if($('#right').val()!=null)
+            {
+                var id=$('#right').val();
+                var input=(id+"").split(",");
+                for(var i=0;i<input.length;i++){
+                    var emp_id="<option selected value='"+input[i]+"'>"+$('#emp_'+input[i]).html()+"</option>";
+                    opt = {id: input[i], val: emp_id};
+                    arr2.push(opt);
+                }
+            }
             $("#addlist2").click(function(){
                 if(arr2.length==0)
                 {

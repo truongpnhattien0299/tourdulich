@@ -79,23 +79,35 @@ class listgroupController extends Controller
     public function getEditlistgroup($id)
     {
         $listgroup = listgroup::find($id);
+        //
+        $arr= json_decode($listgroup->nguoidi_dsnhanvien);
+        $arr1=[];
+        for($i = 0; $i<count($arr) ;$i++){
+           $arr1[$i]=$arr[$i]->id;
+        }
+        $employee1=[];
+        for($i = 0;$i < count($arr1);$i++){
+            $employee = employee::find($arr1[$i]);
+            $employee1['id'][$i]=$employee->nv_id;
+            $employee1['val'][$i]=$employee->nv_ten."--".$employee->nv_nhiemvu;
+        }
 
-        $arr2= $request->Listemployee;
+        //
+        $arr2= json_decode($listgroup->nguoidi_dskhach);
         $arr3=[];
         for($i = 0; $i<count($arr2) ;$i++){
-            $obj = (object) [];
-            $group = group::find($request->group);
-            $obj->id=$arr2[$i];
-            $obj->ngaydi=$group->doan_ngaydi;
-            $obj->ngayve=$group->doan_ngayve;
-            array_push($arr3, $obj);
+           $arr3[$i]=$arr2[$i]->id;
         }
-        $json1 = json_encode($arr3);
-        $listgroup->nguoidi_dsnhanvien = $json1;
+        $customer1=[];
+        for($i = 0;$i < count($arr3);$i++){
+            $customer = Khachang::find($arr3[$i]);
+            $customer1['id'][$i]=$customer->kh_id;
+            $customer1['val'][$i]=$customer->kh_ten;
+        }
 
-        $customer= Khachang::all();
-        $employee = employee::all();
-        return view('listgroup.edit',['listgroup' => $listgroup,'customer'=>$customer,'employee'=>$employee]);
+        $listcustomer = Khachang::all();
+        $listemployee = employee::all();
+        return view('listgroup.edit',['listgroup' => $listgroup,'listcustomer'=>$listcustomer,'listemployee'=>$listemployee,'customer'=>$customer1,'employee'=>$employee1]);
     }
 
     public function postEditlistgroup(Request $request, $id)
