@@ -37,6 +37,7 @@ class groupController extends Controller
             $group->doan_ngayve = $request->end;
             $group->gia_id = $request->tourprice;
             $group->doan_chitietchuongtrinh = $request->details;
+            $group->gia_id = $request->tourprice;
             $group->save();
         }catch(QueryException $e){
             return back()->withError('Can\'t create new group. Because form incomplete')->withInput();

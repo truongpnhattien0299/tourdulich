@@ -29,6 +29,7 @@ Route::group(['prefix' => 'Listgroup'], function () {
     Route::get('delete&id={id}', 'ListgroupController@deleteEmployee');
     Route::get('ajaxemp&id={id}', 'ListgroupController@ajaxListemp');
     Route::get('ajaxcus&id={id}', 'ListgroupController@ajaxListcus');
+    Route::get('list&id={id}', 'ListgroupController@ajaxList');
 });
 Route::group(['prefix' => 'Group'], function () {
     Route::get('listgrp', 'groupController@getGroup');

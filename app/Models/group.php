@@ -31,4 +31,8 @@ class group extends Model
     {
         return $this->hasMany('App\Models\visitor', 'doan_id', 'doan_id');
     }
+    public function listgroup()
+    {
+        return $this->belongsTo('App\Models\listgroup', 'doan_id', 'doan_id');
+    }
 }

@@ -46,7 +46,6 @@ class listgroupController extends Controller
             }
             $json = json_encode($arr1);
             $listgroup->nguoidi_dskhach = $json;
-
             $arr2= $request->Listemployee;
             $arr3=[];
             for($i = 0; $i<count($arr2) ;$i++){
@@ -120,6 +119,31 @@ class listgroupController extends Controller
             $khachhang = Khachang::find($arr[$i]);
             $text.="<option>".$khachhang->kh_ten."</option>";
         }
+        return $text;
+    }
+    public function ajaxList($id)
+    {
+        $text="";
+        $arr=[];
+        $customer = Khachang::all();
+        $listgroup= listgroup::where('doan_id',$id)->get();
+        foreach($listgroup as $item){
+            $json = json_decode($item->nguoidi_dskhach);
+            for($i=0;$i<count($json);$i++){
+                $arr[$item->nguoidi_id][$i]=$json[$i]->id;
+            }
+        }
+        $text="";
+        foreach($listgroup as $item){
+            for($i=0;$i<count($arr[$item->nguoidi_id]);$i++){
+                foreach($customer as $item1){
+                    if($item1->kh_id == $arr[$item->nguoidi_id][$i])
+                        $text.=$arr[$item->nguoidi_id][$i];
+                }
+            }
+        break;
+        }
+        dd($text);
         return $text;
     }
 }
