@@ -23,6 +23,7 @@
                 <div class="form-group">
                     <label for="listgroup">Group</label>
                     <select class="form-control" id="listgroup" name="group">
+                        <option selected>--None--</option>
                         @foreach ($group as $item)
                             <option value="{{$item->doan_id}}">{{$item->doan_name}}</option>
                         @endforeach
@@ -141,6 +142,12 @@
 </div>
 <script>
       $(document).ready(function(){
+          $('#listgroup').change(function(){
+                var id = $('#listgroup').val();
+                $.get("list&id="+id, function(data){
+                    //$("#listcus"+id).html(data);
+                });
+          });
             var arr = [], opt = {};
             $("#addlist").click(function(){
                 if(arr.length==0)
