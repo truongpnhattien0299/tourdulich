@@ -12,7 +12,7 @@ class listgroup extends Model
     protected $primaryKey="nguoidi_id";
     public $timestamps = false;
 
-    public function group()
+    public function doantour()
     {
         return $this->hasOne('App\Models\group', 'doan_id', 'doan_id');
     }

@@ -79,18 +79,33 @@ class listgroupController extends Controller
     public function getEditlistgroup($id)
     {
         $listgroup = listgroup::find($id);
-        return view('listgroup.edit',['listgroup' => $listgroup]);
+
+        $arr2= $request->Listemployee;
+        $arr3=[];
+        for($i = 0; $i<count($arr2) ;$i++){
+            $obj = (object) [];
+            $group = group::find($request->group);
+            $obj->id=$arr2[$i];
+            $obj->ngaydi=$group->doan_ngaydi;
+            $obj->ngayve=$group->doan_ngayve;
+            array_push($arr3, $obj);
+        }
+        $json1 = json_encode($arr3);
+        $listgroup->nguoidi_dsnhanvien = $json1;
+
+        $customer= Khachang::all();
+        $employee = employee::all();
+        return view('listgroup.edit',['listgroup' => $listgroup,'customer'=>$customer,'employee'=>$employee]);
     }
 
     public function postEditlistgroup(Request $request, $id)
     {
         try{
             $listgroup = listgroup::find($id);
-            $listgroup->nv_ten = $request->name;
-            $listgroup->nv_sdt = $request->phone;
-            $listgroup->nv_ngaysinh = $request->dayOfBirth;
-            $listgroup->nv_email = $request->email;
-            $listgroup->nv_nhiemvu = $request->mission;
+            $listgroup->nguoidi_id = $request->name;
+            $listgroup->doan_id = $request->phone;
+            $listgroup->nguoidi_dsnhanvien = $request->dayOfBirth;
+            $listgroup->nguoidi_dskhach = $request->email;
             $listgroup->save();
         }catch(QueryException $e){
             return back()->withError('Can\'t create new listgroup. Because form incomplete');
