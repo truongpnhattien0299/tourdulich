@@ -60,7 +60,7 @@ class ChiphiController extends Controller
         {
             return back()->withError('Can\'t create new Cost detail. Because form incomplete');
         }
-        return redirect("cost/addcp&id=$id");
+        return redirect("Group/cost/addcp&id=$id");
     }
 
     public function postEditCp(Request $request, $id)

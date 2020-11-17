@@ -98,3 +98,8 @@ Route::group(['prefix' => 'typecost'], function () {
     Route::post('edit&id={id}', 'LoaichiphiController@postEditTc');
     Route::get('delete&id={id}', 'LoaichiphiController@deleteTc');
 });
+
+Route::group(['prefix' => 'summany'], function () {
+    Route::get('revenuetour', 'SummaryController@tour');
+    Route::get('revenuedetailtour&id={id}', 'SummaryController@detailtour');
+});

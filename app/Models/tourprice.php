@@ -16,4 +16,9 @@ class tourprice extends Model
     {
         return $this->belongsTo('App\Models\Tour', 'tour_id', 'tour_id');
     }
+
+    public function doan()
+    {
+        return $this->hasOne('App\Models\group', 'gia_id', 'gia_id');
+    }
 }
