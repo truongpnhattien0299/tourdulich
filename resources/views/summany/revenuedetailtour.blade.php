@@ -28,49 +28,54 @@
                 </tr>
               </thead>
               <tbody>
+                @php
+                    $doanhthutotal = 0;
+                    $chiphitotal = 0;
+                @endphp
                 @foreach ($group as $item)
                 <tr>
                     <td>{{$item->doan_id}}</td>
                     <td>{{$item->doan_name}}</td>
                     <td>
                         @php
-                            $dem=0;
+                        $dem=0;
+                        foreach ($ngdi as $khach)
+                            if ($item->doan_id == $khach->doan_id)
+                                $arr = json_decode($khach->nguoidi_dskhach);
+                                $dem = count($arr);
+                        echo $dem;
                         @endphp
-                        @foreach ($ngdi as $khach)
-                            @if ($item->doan_id == $khach->doan_id)
-                                @php
-                                    $arr = json_decode($khach->nguoidi_dskhach);
-                                    $dem = count($arr);
-                                @endphp
-                            @endif
-                        @endforeach
-                        {{$dem}}
                     </td>
                     <td>
-                        {{$item->price->gia_sotien}}
+                        {{ number_format($item->price->gia_sotien) }}
                     </td>
                     <td>
                         @php
                             $doanhthu = $dem * $item->price->gia_sotien;
-                            echo $doanhthu;
-                            $chiphi = 0;
+                            $doanhthutotal += $doanhthu;
+                            echo number_format($doanhthu);
                         @endphp
                     </td>
                     <td>
-                        @if ($item->chiphi!=null)
-                            @php
-                                $chiphi = $item->chiphi->chiphi_total;
-                                echo $chiphi;
-                            @endphp
-                        @else
-                            0
-                        @endif
+                        @php
+                        $chiphi=0;
+                        if ($item->chiphi!=null)
+                            $chiphi = $item->chiphi->chiphi_total;
+                        $chiphitotal += $chiphi;
+                        echo number_format($chiphi);
+                        @endphp
                     </td>
                     <td>
-                        {{$doanhthu - $chiphi}}
+                        {{ number_format($doanhthu - $chiphi) }}
                     </td>
                 </tr>
                 @endforeach
+                <tr>
+                    <td colspan="4" style="text-align: right">Total</td>
+                    <td><b>{{ number_format($doanhthutotal) }}</b></td>
+                    <td><b>{{ number_format($chiphitotal) }}</b></td>
+                    <td><b>{{ number_format($doanhthutotal - $chiphitotal) }}</b></td>
+                </tr>
             </tbody>
           </table>
         </div>
