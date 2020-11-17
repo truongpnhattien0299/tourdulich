@@ -46,6 +46,20 @@
                         {{$i}}
                     </td>
                     <td>
+                      @php
+                            $dem=0;
+                        @endphp
+                        @foreach ($ngdi as $khach)
+                            @if ($item->doan_id == $khach->doan_id)
+                                @php
+                                    $arr = json_decode($khach->nguoidi_dskhach);
+                                    $dem = count($arr);
+                                @endphp
+                            @endif
+                        @endforeach
+                        {{$dem * $item->price->gia_sotien}}
+                    </td>
+                    <td>
                         @php
                             $total=0;
                         @endphp

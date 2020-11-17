@@ -18,10 +18,12 @@ class SummaryController extends Controller
         $tour = Tour::all();
         $gia = tourprice::all();
         $detail = Chiphi::all();
+        $ngdi = visitor::all();
         return view("summany.revenuetour", ['group' => $group,
                                             'tour' => $tour,
                                             'gia' => $gia,
-                                            'detail' => $detail]);
+                                            'detail' => $detail,
+                                            'ngdi' => $ngdi]);
     }
 
     public function detailtour($id)
