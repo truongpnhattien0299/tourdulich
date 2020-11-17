@@ -14,7 +14,7 @@ class visitor extends Model
 
     public function doantour()
     {
-        return $this->belongsTo('App\Models\group', 'doan_id', 'doan_id');
+        return $this->hasOne('App\Models\group', 'doan_id', 'doan_id');
     }
 
 }

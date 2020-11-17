@@ -29,7 +29,7 @@ class group extends Model
 
     public function visitor()
     {
-        return $this->hasMany('App\Models\visitor', 'doan_id', 'doan_id');
+        return $this->belongsTo('App\Models\visitor', 'doan_id', 'doan_id');
     }
     public function listgroup()
     {
