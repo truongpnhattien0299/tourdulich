@@ -91,7 +91,6 @@ class listgroupController extends Controller
             $employee1['id'][$i]=$employee->nv_id;
             $employee1['val'][$i]=$employee->nv_ten."--".$employee->nv_nhiemvu;
         }
-
         //
         $arr2= json_decode($listgroup->nguoidi_dskhach);
         $arr3=[];
@@ -104,7 +103,6 @@ class listgroupController extends Controller
             $customer1['id'][$i]=$customer->kh_id;
             $customer1['val'][$i]=$customer->kh_ten;
         }
-
         $listcustomer = Khachang::all();
         $listemployee = employee::all();
         return view('listgroup.edit',['listgroup' => $listgroup,'listcustomer'=>$listcustomer,'listemployee'=>$listemployee,'customer'=>$customer1,'employee'=>$employee1]);
@@ -112,16 +110,42 @@ class listgroupController extends Controller
 
     public function postEditlistgroup(Request $request, $id)
     {
-        try{
-            $listgroup = listgroup::find($id);
-            $listgroup->nguoidi_id = $request->name;
-            $listgroup->doan_id = $request->phone;
-            $listgroup->nguoidi_dsnhanvien = $request->dayOfBirth;
-            $listgroup->nguoidi_dskhach = $request->email;
-            $listgroup->save();
-        }catch(QueryException $e){
-            return back()->withError('Can\'t create new listgroup. Because form incomplete');
-        }
+            try{
+                if($request->ListCustomer == null){
+                    return back()->withError('Can\'t create new listgroup.List customer is null')->withInput();
+                }
+                if($request->Listemployee == null){
+                    return back()->withError('Can\'t create new listgroup. List employee is null')->withInput();
+                }
+                $listgroup = listgroup::find($id);
+                $arr= $request->ListCustomer;
+                $arr1=[];
+                for($i = 0; $i<count($arr) ;$i++){
+                    $obj = (object) [];
+                    $group = group::find($request->group);
+                    $obj->id=$arr[$i];
+                    $obj->ngaydi=$group->doan_ngaydi;
+                    $obj->ngayve=$group->doan_ngayve;
+                    array_push($arr1, $obj);
+                }
+                $json = json_encode($arr1);
+                $listgroup->nguoidi_dskhach = $json;
+                $arr2= $request->Listemployee;
+                $arr3=[];
+                for($i = 0; $i<count($arr2) ;$i++){
+                    $obj = (object) [];
+                    $group = group::find($request->group);
+                    $obj->id=$arr2[$i];
+                    $obj->ngaydi=$group->doan_ngaydi;
+                    $obj->ngayve=$group->doan_ngayve;
+                    array_push($arr3, $obj);
+                }
+                $json1 = json_encode($arr3);
+                $listgroup->nguoidi_dsnhanvien = $json1;
+                $listgroup->save();
+            }catch(QueryException $e){
+                return back()->withError('Can\'t create new listgroup. Because form incomplete')->withInput();
+            }
         return redirect('Listgroup/listlgrp');
     }
 
@@ -159,29 +183,28 @@ class listgroupController extends Controller
         }
         return $text;
     }
-    public function ajaxList($id)
-    {
-        $text="";
-        $arr=[];
-        $customer = Khachang::all();
-        $listgroup= listgroup::where('doan_id',$id)->get();
-        foreach($listgroup as $item){
-            $json = json_decode($item->nguoidi_dskhach);
-            for($i=0;$i<count($json);$i++){
-                $arr[$item->nguoidi_id][$i]=$json[$i]->id;
-            }
-        }
-        $text="";
-        foreach($listgroup as $item){
-            for($i=0;$i<count($arr[$item->nguoidi_id]);$i++){
-                foreach($customer as $item1){
-                    if($item1->kh_id == $arr[$item->nguoidi_id][$i])
-                        $text.=$arr[$item->nguoidi_id][$i];
-                }
-            }
-        break;
-        }
-        dd($text);
-        return $text;
-    }
+    // public function ajaxList($id)
+    // {
+    //     $text="";
+    //     $arr=[];
+    //     $customer = Khachang::all();
+    //     $listgroup= listgroup::where('doan_id',$id)->get();
+    //     foreach($listgroup as $item){
+    //         $json = json_decode($item->nguoidi_dskhach);
+    //         for($i=0;$i<count($json);$i++){
+    //             $arr[$item->nguoidi_id][$i]=$json[$i]->id;
+    //         }
+    //     }
+    //     $text="";
+    //     foreach($listgroup as $item){
+    //         for($i=0;$i<count($arr[$item->nguoidi_id]);$i++){
+    //             foreach($customer as $item1){
+    //                 if($item1->kh_id == $arr[$item->nguoidi_id][$i])
+    //                     $text.=$arr[$item->nguoidi_id][$i];
+    //             }
+    //         }
+    //     }
+    //     dd($text);
+    //     return $text;
+    // }
 }

@@ -20,6 +20,7 @@
 
             <form class="forms-sample" action="editlgrp&id={{$listgroup->nguoidi_id}}" method="post">
                 @csrf
+                <input type="hidden" value="{{$listgroup->doan_id}}" name="group">
                 <div class="form-group">
                   </div>
                 <div class="row">
@@ -70,8 +71,8 @@
                                 </div>
                                 <br>
                                 <select class="form-control" size="7" id="left" name="ListCustomer[]" multiple>
-                                    @for($i=0; $i <= count($customer);$i++)
-                                        <option selected id="cus_{{$customer['id'][$i]}}" value='{{ $customer['id'][$i] }}'>{{$customer['val'][$i]}}</option>
+                                    @for($i=0; $i < count($customer['id']);$i++)
+                                        <option selected id='cus_{{$customer['id'][$i]}}' value='{{ $customer['id'][$i] }}'>{{$customer['val'][$i]}}</option>
                                      @endfor
                                 </select>
                             </div>

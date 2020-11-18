@@ -21,8 +21,8 @@
             <form class="forms-sample" action="addlgrp" method="post">
                 @csrf
                 <div class="form-group">
-                    <label for="listgroup">Group</label>
-                    <select class="form-control" id="listgroup" name="group">
+                    <label for="list">Group</label>
+                    <select class="form-control" id="list" name="group">
                         <option selected>--None--</option>
                         @foreach ($group as $item)
                             <option value="{{$item->doan_id}}">{{$item->doan_name}}</option>
@@ -142,12 +142,13 @@
 </div>
 <script>
       $(document).ready(function(){
-          $('#listgroup').change(function(){
-                var id = $('#listgroup').val();
-                $.get("list&id="+id, function(data){
-                    //$("#listcus"+id).html(data);
-                });
-          });
+
+            // $('#c').change(function(){
+            //     var id= $('#list').val();
+            //     $.get("getlist&id="+id, function(data){
+            //         $("#list"+id).html(data);
+            //     });
+            // });
             var arr = [], opt = {};
             $("#addlist").click(function(){
                 if(arr.length==0)

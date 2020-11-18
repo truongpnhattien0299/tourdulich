@@ -33,7 +33,7 @@
 
                 <tr>
                   <td> {{$item->nguoidi_id}} </td>
-                  <td> {{$item->group->doan_name}} </td>
+                  <td> {{$item->doantour->doan_name}} </td>
                   <td>
                   <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" id="btn-down" onclick="getcus('{{$item->nguoidi_dskhach}}',{{$item->nguoidi_id}})" data-toggle="modal" data-target="#myModal{{$item->nguoidi_id}}">
                         <i class="mdi mdi mdi-file-document"></i>
