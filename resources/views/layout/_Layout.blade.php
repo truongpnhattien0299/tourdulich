@@ -190,7 +190,9 @@
                 <div class="collapse" id="summany">
                   <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="/summany/revenuetour"> Revenue Tour </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="/typecost/addtc"> Add </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/summany/revenuetour"> Revenue Tour </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/summany/tour"> Tour </a></li>
+
                   </ul>
                 </div>
               </li>

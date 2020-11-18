@@ -142,13 +142,6 @@
 </div>
 <script>
       $(document).ready(function(){
-
-            // $('#c').change(function(){
-            //     var id= $('#list').val();
-            //     $.get("getlist&id="+id, function(data){
-            //         $("#list"+id).html(data);
-            //     });
-            // });
             var arr = [], opt = {};
             $("#addlist").click(function(){
                 if(arr.length==0)

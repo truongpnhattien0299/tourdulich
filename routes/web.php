@@ -102,4 +102,6 @@ Route::group(['prefix' => 'typecost'], function () {
 Route::group(['prefix' => 'summany'], function () {
     Route::get('revenuetour', 'SummaryController@tour');
     Route::get('revenuedetailtour&id={id}', 'SummaryController@detailtour');
+    Route::get('tour', 'SummaryController@Counttour');
+    Route::get('search&start={start}&end={end}', 'SummaryController@search');
 });
