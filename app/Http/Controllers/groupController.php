@@ -70,8 +70,12 @@ class groupController extends Controller
 
     public function deletegroup($id)
     {
+        try{
         $group = group::find($id);
         $group->delete();
+        }catch(QueryException $e){
+            return back()->withError('Can\'t Delete new group. Because form incomplete');
+        }
         return redirect('Group/listgrp');
     }
     public function priceGroup($id, $start)

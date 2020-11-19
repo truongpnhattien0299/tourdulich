@@ -44,7 +44,7 @@
                     <div class="btn-group">
                       <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" style="padding: 10%">Select</button>
                       <div class="dropdown-menu" style="min-width: 10px">
-                        <a href="editgrp&id={{$item->doan_id}}" class="dropdown-item">Edit</a>
+                        <a href="{{asset('editgrp')}}&id={{$item->doan_id}}" class="dropdown-item">Edit</a>
                         <a class="dropdown-item" onclick="get({{$item->doan_id}})" >Details</a>
                         <a onclick="del()" id="del" class="dropdown-item" style="cursor: pointer">Delete</a>
                       </div>
@@ -72,7 +72,7 @@
     {
       var a = confirm("Are you sure you want to DELETE this Group");
       if(a)
-        location.replace("delete&id={{$item->doan_id}}");
+        location.replace("{{asset('group/delete')}}&id={{$item->doan_id}}");
     }
   </script>
   @endsection

@@ -47,8 +47,8 @@
                     <div class="btn-group">
                       <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" style="padding: 10%">Select</button>
                       <div class="dropdown-menu" style="min-width: 10px">
-                        <a href="editcus&id={{$item->kh_id}}" class="dropdown-item">Edit</a>
-                        <a onclick="del()" id="del" class="dropdown-item" style="cursor: pointer">Delete</a>
+                        <a href="{{asset('customer')}}/editcus&id={{$item->kh_id}}" class="dropdown-item">Edit</a>
+                        <a onclick="del({{$item->kh_id}})" id="del" class="dropdown-item" style="cursor: pointer">Delete</a>
                       </div>
                     </div>
                   </td>
@@ -67,11 +67,11 @@
 @if (!session('notice'))
   @section('script')
   <script>
-    function del()
+    function del(id)
     {
       var a = confirm("Are you sure you want to DELETE this customer");
       if(a)
-        location.replace("delete&id={{$item->kh_id}}");
+        location.replace("{{asset('customer')}}/delete&id="+id);
     }
   </script>
   @endsection

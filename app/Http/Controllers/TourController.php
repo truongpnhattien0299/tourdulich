@@ -113,8 +113,12 @@ class TourController extends Controller
 
     public function deleteTour($id)
     {
-        $tour = Tour::find($id);
-        $tour->delete();
+        try{
+            $tour = Tour::find($id);
+            $tour->delete();
+        }catch(QueryException $e){
+            return back()->withError('Can\'t Delete the Tour. Because form incomplete');
+        }
         return redirect('tour/listtour');
     }
 

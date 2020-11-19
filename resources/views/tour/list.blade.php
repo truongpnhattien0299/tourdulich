@@ -15,8 +15,20 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">List</h4>
-          <p class="card-description"> <a href="/category/addcate"> Create new </a> </p>
+          <p class="card-description"> <a href="/tour/addtour"> Create new </a> </p>
           <table class="table table-striped">
+            @if (session('error'))
+                <div id="idError">
+                    <div class="alert alert-danger">{{ session('error') }}</div>
+                </div>
+                <script>
+                    $(document).ready(function(){
+                        $(window).click(function(){
+                            $("#idError").slideUp("slow");
+                        });
+                    });
+                </script>
+            @endif
             @if (session('notice'))
                 <div class="alert alert-danger">{{ session('notice') }}</div>
             @else
@@ -58,8 +70,8 @@
                         <div class="btn-group">
                           <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" style="padding: 10%">Select</button>
                           <div class="dropdown-menu" style="min-width: 10px">
-                            <a href="edit&id={{$item->tour_id}}" class="dropdown-item">Edit</a>
-                            <a id="pop-price" onclick="price({{$item->tour_id}})" class="dropdown-item" data-toggle="modal" data-target="#myModal{{$item->tour_id}}">Price</a>
+                            <a href="{{asset('tour/edit&id='.$item->tour_id.'')}}" class="dropdown-item">Edit</a>
+                            <a id="pop-price" style="cursor: pointer" onclick="price({{$item->tour_id}})" class="dropdown-item" data-toggle="modal" data-target="#myModal{{$item->tour_id}}">Price</a>
                             <a onclick="del()" id="del" class="dropdown-item" style="cursor: pointer">Delete</a>
                           </div>
                         </div>
@@ -102,20 +114,20 @@
 @endsection
 
 @if (!session('notice'))
-  @section('script')
-  <script>
-    function price(id){
-        $.get("popup&id="+id, function(data){
-           $('#listprice').html(data);
-        });
-    }
-    function del()
-    {
-      var a = confirm("Are you sure you want to DELETE this category");
-      if(a)
-        location.replace("delete&id={{$item->loai_id}}");
-    }
-  </script>
-  @endsection
+    @section('script')
+    <script>
+        function price(id){
+            $.get("popup&id="+id, function(data){
+                $('#listprice').html(data);
+            });
+        }
+        function del()
+        {
+            var a = confirm("Are you sure you want to DELETE this tour");
+            if(a)
+                location.replace("{{asset('tour/delete')}}&id={{$item->tour_id}}");
+        }
+    </script>
+    @endsection
 @endif
 {{session()->forget('notice')}}
