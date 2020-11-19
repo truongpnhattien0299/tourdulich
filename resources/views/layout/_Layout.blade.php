@@ -35,7 +35,11 @@
             <form class="d-flex align-items-center h-100" action="#">
               <div class="input-group">
                 <div class="input-group-prepend bg-transparent">
-                  <i class="input-group-text border-0 mdi mdi-magnify"></i>
+                  <select name="search" id="search">
+                    <option value="stour" selected>Tour</option>
+                    <option value="sgroup">Group</option>
+                    <option value="scus">Customer</option>
+                  </select>
                 </div>
                 <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
               </div>
@@ -219,6 +223,9 @@
     <!-- container-scroller -->
     @yield('script')
     <!-- plugins:js -->
+    <script>
+      
+    </script>
     <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
