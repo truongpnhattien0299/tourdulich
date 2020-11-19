@@ -32,16 +32,16 @@
             <span class="mdi mdi-menu"></span>
           </button>
           <div class="search-field d-none d-md-block">
-            <form class="d-flex align-items-center h-100" action="#">
+            <form class="d-flex align-items-center h-100" action="search" method="GET">
               <div class="input-group">
                 <div class="input-group-prepend bg-transparent">
-                  <select name="search" id="search">
+                  <select class="form-control" name="slsearch" id="slsearch">
                     <option value="stour" selected>Tour</option>
                     <option value="sgroup">Group</option>
                     <option value="scus">Customer</option>
                   </select>
                 </div>
-                <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
+                <input type="text" class="form-control bg-transparent border-0" name="valuesearch" id="valuesearch" placeholder="Search" value="{{$_GET['valuesearch']}}">
               </div>
             </form>
           </div>
@@ -225,9 +225,6 @@
     <!-- container-scroller -->
     @yield('script')
     <!-- plugins:js -->
-    <script>
-      
-    </script>
     <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->

@@ -105,3 +105,5 @@ Route::group(['prefix' => 'summany'], function () {
     Route::get('tour', 'SummaryController@Counttour');
     Route::get('search&start={start}&end={end}', 'SummaryController@search');
 });
+
+Route::get('search', 'SearchController@showdata');
