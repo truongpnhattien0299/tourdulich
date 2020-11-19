@@ -41,8 +41,10 @@
                         $dem=0;
                         foreach ($ngdi as $khach)
                             if ($item->doan_id == $khach->doan_id)
+                            {
                                 $arr = json_decode($khach->nguoidi_dskhach);
                                 $dem = count($arr);
+                            }
                         echo $dem;
                         @endphp
                     </td>
